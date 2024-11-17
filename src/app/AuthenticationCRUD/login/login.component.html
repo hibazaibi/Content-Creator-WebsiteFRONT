@@ -1,0 +1,55 @@
+<div class="login-root">
+  <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh; flex-grow: 1;">
+    <div class="loginbackground box-background--white padding-top--64">
+      <div class="loginbackground-gridContainer">
+        <!-- Background elements here -->
+      </div>
+    </div>
+    <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
+      <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+        <h1><a href="http://blog.stackfindover.com/" rel="dofollow">CreatorHub</a></h1>
+      </div>
+      <div class="formbg-outer">
+        <div class="formbg">
+          <div class="formbg-inner padding-horizontal--48">
+            <span class="padding-bottom--15">Sign in to your account</span>
+            <form id="stripe-login" #loginForm="ngForm" (ngSubmit)="login(loginForm)" autocomplete="off">
+              <div *ngIf="!existinguser" style="color: red; margin-bottom: 10px;">
+                Vous avez entré des données invalide! Veuillez réessayer.
+              </div>
+              <div class="field padding-bottom--24">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" ngModel placeholder="Enter your email" autocomplete="off" required>
+              </div>
+              <div class="field padding-bottom--24">
+                <div class="grid--50-50">
+                  <label for="password">Password</label>
+                </div>
+                <input type="password" name="password" id="password" ngModel placeholder="Enter your password" autocomplete="off" required>
+              </div>
+              <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
+                <label for="checkbox">
+                  <input type="checkbox" name="checkbox" id="checkbox"> Stay signed in
+                </label>
+              </div>
+              <div class="field padding-bottom--24">
+                <button type="submit">Sign in</button>
+              </div>
+              <div class="reset-pass">
+                <a href="/resetpwd">Forgot your password?</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="footer-link padding-top--24">
+          <span>Don't have an account? <a href="/register">Sign up</a></span>
+          <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
+            <span><a href="#">© 2024 CreatorHub</a></span>
+            <span><a href="#">Contact</a></span>
+            <span><a href="#">Privacy & Terms</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

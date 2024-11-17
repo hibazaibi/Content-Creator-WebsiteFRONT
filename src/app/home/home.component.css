@@ -1,0 +1,88 @@
+
+.hero-section {
+  background-color: #f8f9fa;
+  padding: 60px 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero-content {
+  max-width: 500px;
+  margin-left: 5%;
+  text-align: left;
+}
+.hero-content h1 {
+  font-weight: bold;
+  color: #333;
+}
+.hero-content p {
+  color: #666;
+  margin-top: 10px;
+}
+.hero-content .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 20px;
+}
+.color-circle {
+  border-radius: 50%;
+  position: absolute;
+}
+.circle-red {
+  background: #c71010;
+  width: 200px;
+  height: 200px;
+  top: 50px;
+  right: 10%;
+}
+.circle-blue {
+  background: blue;
+  width: 100px;
+  height: 100px;
+  top: 180px;
+  right: 20%;
+}
+.circle-green {
+  background: #259b25;
+  width: 50px;
+  height: 50px;
+  top: 250px;
+  right: 25%;
+}
+.creator-profile {
+  text-align: center;
+  margin-top: 30px;
+}
+.creator-profile img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.brand-logos {
+  margin: 40px 0;
+}
+.brand-logos img {
+  max-height: 50px;
+  margin: 0 15px;
+  opacity: 0.6;
+}
+.why-choose-us {
+  background-color: #e9ecef;
+  padding: 60px 0;
+  text-align: center;
+}
+.why-choose-us h2 {
+  font-weight: bold;
+}
+.why-choose-us p {
+  color: #555;
+}
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.logo-text .hub {
+  color: #007bff;
+}

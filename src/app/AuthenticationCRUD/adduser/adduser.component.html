@@ -1,0 +1,186 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <a class="navbar-brand logo-text" href="#">Creator<span class="hub">Hub</span></a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+      <li class="nav-item"><a class="btn btn-primary" href="#">Sign Up</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="formbold-main-wrapper">
+  <div class="formbold-form-wrapper">
+    <form #registerform="ngForm" (ngSubmit)="register(registerform)">
+      <div class="formbold-form-title">
+        <h2>Registration Form</h2>
+        <p>
+          Please fill in the form to create your account.
+        </p>
+      </div>
+
+      <div class="formbold-input-flex">
+        <div>
+          <label for="nom" class="formbold-form-label">
+            First Name<span style="color: #D72A12">*</span>
+          </label>
+          <input
+            type="text"
+            name="nom"
+            id="nom"
+            ngModel
+            class="formbold-form-input"
+            placeholder="Enter your first name"
+            required
+          />
+        </div>
+        <div>
+          <label for="prenom" class="formbold-form-label">
+            Last Name<span style="color: #D72A12">*</span>
+          </label>
+          <input
+            type="text"
+            name="prenom"
+            id="prenom"
+            ngModel
+            class="formbold-form-input"
+            placeholder="Enter your last name"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="formbold-mb-3">
+        <label for="email" class="formbold-form-label">Email<span style="color: #D72A12">*</span></label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          ngModel
+          class="formbold-form-input"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <div class="formbold-mb-3">
+        <label for="password" class="formbold-form-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          ngModel
+          class="formbold-form-input"
+          placeholder="Enter your password"
+        />
+      </div>
+      <div class="formbold-mb-3">
+        <label for="image" class="formbold-form-label">Profile Picture</label>
+        <input
+          type="file"
+          name="image"
+          id="image"
+          (change)="onSelectFile($event)"
+          class="formbold-form-input"
+          accept="image/*"
+        >
+      </div>
+      <div class="formbold-mb-3">
+        <label for="role" class="formbold-form-label">Role<span style="color: #D72A12">*</span></label>
+        <select name="role" id="role" ngModel class="formbold-form-input" required>
+          <option value="" selected>--Are you a client or creator?--</option>
+          <option value="CLIENT">Client</option>
+          <option value="CREATOR">Créateur</option>
+        </select>
+      </div>
+
+
+
+      <div *ngIf="registerform.value.role === 'CLIENT'" class="formbold-mb-3">
+        <div class="formbold-input-flex">
+          <div>
+        <label for="nomEntreprise" class="formbold-form-label">Company Name</label>
+        <input
+          type="text"
+          name="nomEntreprise"
+          id="nomEntreprise"
+ngModel          class="formbold-form-input"
+          placeholder="Enter your company name"
+        />
+      </div>
+          <div>
+        <label for="siteWebEntreprise" class="formbold-form-label">Website</label>
+        <input
+          type="url"
+          name="siteWebEntreprise"
+          id="siteWebEntreprise"
+ngModel
+          class="formbold-form-input"
+          placeholder="URL of your website"
+        />
+      </div>
+        </div>
+      <div class="formbold-mb-3">
+        <label for="secteurActivite" class="formbold-form-label">Industry</label>
+        <input
+          type="text"
+          name="secteurActivite"
+          id="secteurActivite"
+          ngModel
+          class="formbold-form-input"
+          placeholder="Enter your industry"
+        />
+      </div>
+      </div>
+
+      <div *ngIf="registerform.value.role === 'CREATOR'" class="formbold-mb-3">
+        <div class="formbold-mb-3">
+        <label for="bio" class="formbold-form-label">Bio</label>
+        <textarea
+          name="bio"
+          id="bio"
+          ngModel            class="formbold-form-input"
+          placeholder="Write a brief bio about yourself"
+        ></textarea>
+      </div>
+        <div class="formbold-input-flex">
+            <div>
+          <label for="lienInsta" class="formbold-form-label">Instagram Link</label>
+          <input
+            type="url"
+            name="lienInsta"
+            id="lienInsta"
+            ngModel              class="formbold-form-input"
+            placeholder="Enter your Instagram profile link"
+          />
+        </div>
+          <div>
+            <label for="lienTikTok" class="formbold-form-label">Tiktok Link</label>
+            <input
+              type="url"
+              name="lienTikTok"
+              id="lienTikTok"
+              ngModel                class="formbold-form-input"
+              placeholder="Enter your TikTok profile link"
+            />
+          </div>
+          </div>
+        <div class="formbold-mb-3">
+          <label for="categoriesContenu" class="formbold-form-label">Content Categories</label>
+          <input
+            type="text"
+            name="categoriesContenu"
+            id="categoriesContenu"
+            ngModel              class="formbold-form-input"
+            placeholder="Enter your content categories"
+          />
+        </div>
+      </div>
+
+      <button type="submit" class="formbold-btn">Register</button>
+    </form>
+  </div>
+</div>

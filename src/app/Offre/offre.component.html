@@ -1,0 +1,74 @@
+<div id="offer-form-container">
+  <form id="offer-form" #offerForm="ngForm" (ngSubmit)="Offre(offerForm)">
+    <h1 id="form-title">Create an Offer</h1>
+    <p id="form-description">Please fill in the details below to submit your offer.</p>
+    <fieldset>
+      <legend>Offer Details</legend>
+      <div>
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Provide details about your offer..."
+          ngModel
+
+          rows="4"
+          required>
+        </textarea>
+      </div>
+      <div>
+        <label for="budget">Budget (in DT):</label>
+        <input
+          type="number"
+          id="budget"
+          ngModel
+
+          name="budget"
+          placeholder="Enter your budget (e.g., 500)"
+          required>
+      </div>
+      <div>
+        <label for="Deadline">Deadline:</label>
+        <input
+          type="date"
+          id="Deadline"
+          ngModel
+          name="Deadline"
+          required>
+      </div>
+
+      <fieldset>
+      <legend>Additional Information</legend>
+      <div>
+        <label for="collaborationDetails">Collaboration Details:</label>
+        <textarea
+          id="collaborationDetails"
+          name="collaborationDetails"
+          ngModel
+          placeholder="Provide details about how you plan to collaborate..."
+          rows="4"
+          required>
+        </textarea>
+      </div>
+      <div>
+        <label for="specialRequests">Special Requests:</label>
+        <textarea
+          id="specialRequests"
+          name="specialRequests"
+          ngModel
+          placeholder="Enter any special requests or instructions..."
+          rows="3">
+        </textarea>
+      </div>
+
+    </fieldset>
+    </fieldset>
+    <div id="form-actions">
+      <button type="submit" id="submit-button">Submit Offer</button>
+    </div>
+  </form>
+</div>
+
+
+
+

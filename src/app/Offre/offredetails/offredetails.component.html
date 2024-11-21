@@ -1,0 +1,20 @@
+<div class="offers-container">
+  <h2>Vos Offres</h2>
+  <div *ngIf="offreData.length === 0" class="no-offers">
+    <p>Aucune offre disponible pour le moment.</p>
+  </div>
+  <ul class="offer-list">
+    <li *ngFor="let offre of offreData" class="offer-item">
+      <h3>{{ offre.description }}</h3>
+      <p><strong>Budget:</strong> {{ offre.budget }} TND</p>
+      <p><strong>Status:</strong> {{ offre.OffreStatus }}</p>
+      <p><strong>Deadline:</strong> {{ offre.Deadline | date:'dd/MM/yyyy' }}</p>
+      <p><strong>Collaboration Details:</strong> {{ offre.collaborationDetails }}</p>
+      <p><strong>Special Requests:</strong> {{ offre.specialRequests }}</p>
+      <div class="actions">
+        <button (click)="updateOffre(offre.idcreateur)">Modifier</button>
+        <button (click)="deleteOffre(offre.idcreateur)">Supprimer</button>
+      </div>
+    </li>
+  </ul>
+</div>

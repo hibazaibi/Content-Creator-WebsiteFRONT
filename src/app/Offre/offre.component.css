@@ -5,14 +5,26 @@ body {
   padding: 0;
   background-color: #f4f4f9;
 }
+.layout-container {
+  display: flex;
+  min-height: 100vh; /* Ensure the layout fills the viewport height */
+}
+
+app-sidebar {
+  flex-shrink: 0; /* Prevent the sidebar from resizing */
+}
+
 
 #offer-form-container {
   max-width: 600px;
   margin: 50px auto;
-  background: white;
+  margin-left:550px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e0e0e0; /* Add a light gray border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+  flex-grow: 1; /* Allow the form container to take up the remaining space */
 }
 
 #form-title {

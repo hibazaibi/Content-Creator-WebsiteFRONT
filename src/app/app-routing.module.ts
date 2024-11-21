@@ -11,6 +11,8 @@ import {AdduserComponent} from "./AuthenticationCRUD/adduser/adduser.component";
 import {DetailsuserComponent} from "./AuthenticationCRUD/detailsuser/detailsuser.component";
 import {HomeComponent} from "./home/home.component";
 import {OffreComponent} from "./Offre/offre.component";
+import {ChatComponent} from "./chat/chat.component";
+import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component";
 
 const routes: Routes = [
   {path:'' ,redirectTo:'home',pathMatch:'full'},
@@ -25,6 +27,10 @@ const routes: Routes = [
   {path:"updateuser/:id",component:UpdateuserComponent},
   {path:"detailsuser/:id",component:DetailsuserComponent},
   {path:"offre/:id",component:OffreComponent},
+  {path:"detailsoffre/:id",component:OffredetailsComponent},
+
+  {path:"chat/:id",component:ChatComponent},
+
 
 ];
 

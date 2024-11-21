@@ -25,6 +25,8 @@ import { DetailsuserComponent } from './AuthenticationCRUD/detailsuser/detailsus
 import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {OffreComponent} from "./Offre/offre.component";
+import { ChatComponent } from './chat/chat.component';
+import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component";
 
 
 
@@ -45,6 +47,8 @@ import {OffreComponent} from "./Offre/offre.component";
     HomeComponent,
     SidebarComponent,
     OffreComponent,
+    ChatComponent,
+    OffredetailsComponent
 ],
   imports: [
     BrowserModule,

@@ -144,6 +144,9 @@ export class UserService {
   public getusers2(): Observable<Users[]> {
     return this.httpclient.get<Users[]>(this.PATH_OF_API + '/api/v1/auth/users2');
   }
+  getAllCreators(): Observable<Users[]> {
+    return this.httpclient.get<Users[]>(this.PATH_OF_API + '/api/v1/auth/creators');
+  }
   public forgetpass(ForgetData: forgetData) {
     return this.httpclient.post(this.PATH_OF_API + "/api/v1/auth/forgetpass", ForgetData)
   }

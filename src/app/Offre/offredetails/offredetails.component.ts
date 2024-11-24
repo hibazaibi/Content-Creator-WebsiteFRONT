@@ -22,11 +22,11 @@ interface OffreData {
   styleUrls: ['./offredetails.component.css']
 })
 export class OffredetailsComponent implements OnInit {
-  public offreData: OffreData[] = []; // List of offers for the logged-in creator
-  public selectedOffre!: OffreData; // Selected offer for deletion or update
-  public email!: string; // Email of the logged-in user
-  public user!: Users; // Logged-in user details
-  public useridoffre: number = 0; // ID of the creator logged in
+  public offreData: OffreData[] = [];
+  public selectedOffre!: OffreData;
+  public email!: string;
+  public user!: Users;
+  public useridoffre: number = 0;
 
   constructor(
     private offreService: OffreService,
@@ -35,14 +35,14 @@ export class OffredetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Get email from localStorage and fetch user details
+
     this.email = localStorage.getItem('email')!;
     if (this.email) {
       this.userService.getuserbymail(this.email).subscribe(
         (response: Users) => {
           this.user = response;
-          this.useridoffre = this.user.id; // Set creator ID
-          this.getOffresByCreatorId(this.useridoffre); // Fetch offers for the creator
+          this.useridoffre = this.user.id;
+          this.getOffresByCreatorId(this.useridoffre);
         },
         (error: HttpErrorResponse) => {
           console.error('Failed to fetch user details:', error);
@@ -51,11 +51,10 @@ export class OffredetailsComponent implements OnInit {
       );
     } else {
       alert('No email found in local storage. Please log in.');
-      this.router.navigate(['/login']); // Redirect to login if email is not found
+      this.router.navigate(['/login']);
     }
   }
 
-  // Fetch offers by creator ID
   public getOffresByCreatorId(useridoffre: number): void {
     this.offreService.getOffreByUserIdOffre(useridoffre).subscribe(
       (response: OffreData[]) => {
@@ -68,7 +67,6 @@ export class OffredetailsComponent implements OnInit {
     );
   }
 
-  // Delete an offer
   public deleteOffre(idoffre: number): void {
     if (confirm('Êtes-vous sûr de vouloir supprimer cette offre?')) {
       this.offreService.deleteOffre(idoffre).subscribe(
@@ -84,7 +82,6 @@ export class OffredetailsComponent implements OnInit {
     }
   }
 
-  // Navigate to update offer page
   public updateOffre(idoffre: number): void {
     this.router.navigate(['/updateautre', idoffre]);
   }

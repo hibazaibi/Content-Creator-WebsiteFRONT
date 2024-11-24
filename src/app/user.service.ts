@@ -47,8 +47,8 @@ interface registerData {
   siteWebEntreprise?: string;
   secteurActivite?: string;
   bio?: string;
-  role: string; // Match the `Role` enum in your backend
-  image?: File; // Optional if not always sent
+  role: string;
+  image?: File;
 }
 interface ChangepassData{
 

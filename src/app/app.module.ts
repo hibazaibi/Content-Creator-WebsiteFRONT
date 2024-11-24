@@ -13,7 +13,7 @@ import {RouterModule} from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {ForbiddenComponent} from "./AuthenticationCRUD/forbidden/forbidden.component";
-import {ListusersComponent} from "./AuthenticationCRUD/listusers/listusers.component";
+import {ListcreatorsComponent} from "./AuthenticationCRUD/listcreators/listcreators.component";
 import {ForgetpassComponent} from "./AuthenticationCRUD/forgetpass/forgetpass.component";
 import {AdduserComponent} from "./AuthenticationCRUD/adduser/adduser.component";
 import {UpdateuserComponent} from "./AuthenticationCRUD/updateuser/updateuser.component";
@@ -27,6 +27,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {OffreComponent} from "./Offre/offre.component";
 import { ChatComponent } from './chat/chat.component';
 import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component";
+import {ProfileComponent} from "./Profile/profile.component";
+import {ListusersComponent} from "./listusers/listusers.component";
 
 
 
@@ -37,17 +39,20 @@ import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component
     AppComponent,
     LoginComponent,
     ForbiddenComponent,
-    ListusersComponent,
+    ListcreatorsComponent,
     ChangepasswordComponent,
     ForgetpassComponent,
     MdpoubliComponent,
     AdduserComponent,
     UpdateuserComponent,
     DetailsuserComponent,
+    ListusersComponent,
+    ListcreatorsComponent,
     HomeComponent,
     SidebarComponent,
     OffreComponent,
     ChatComponent,
+    ProfileComponent,
     OffredetailsComponent
 ],
   imports: [

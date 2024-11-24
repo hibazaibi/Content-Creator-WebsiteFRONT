@@ -38,7 +38,7 @@ console.log(registerForm.value)
           },
           (error) => {
             console.log(error);
-            alert("Failed to listusers user");
+            alert("Failed to listcreators user");
           }
         );
       }

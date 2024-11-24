@@ -103,6 +103,14 @@ export class UserService {
 
     return this.httpclient.post(this.PATH_OF_API + "/api/v1/auth/authenticate", loginData)
   }
+  activateUser(userId: number): Observable<void> {
+    return this.httpclient.put<void>(`${this.PATH_OF_API}/admin/activate/${userId}`, {}, {
+      responseType: 'json'
+    });
+  }
+  getAllUsers(): Observable<Users[]> {
+    return this.httpclient.get<Users[]>(this.PATH_OF_API + "/admin/all-users");
+  }
 
   public register(registerData: registerData) {
     const formData = new FormData();

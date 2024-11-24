@@ -1,0 +1,48 @@
+<div class="profile-container">
+  <h2>User Profile</h2>
+
+  <!-- Display common attributes -->
+  <div *ngIf="user2 && user3">
+    <div class="profile-details">
+      <img [src]="imageUrl" alt="User Profile Picture" *ngIf="imageUrl" class="profile-picture" />
+      <p><strong>Nom:</strong> {{ user2.nom }}</p>
+      <p><strong>Prénom:</strong> {{ user2.prenom }}</p>
+      <p><strong>Email:</strong> {{ user2.email }}</p>
+      <p><strong>Date de Naissance:</strong> {{ user3.dateNaissance | date }}</p>
+    </div>
+
+    <!-- Conditionally display attributes for Creator -->
+    <div *ngIf="user3.role === 'creator'" class="creator-details">
+      <h3>Creator Details</h3>
+      <p><strong>Bio:</strong> {{ user3.bio || 'N/A' }}</p>
+      <p><strong>Instagram:</strong> {{ user3.lienInsta || 'N/A' }}</p>
+      <p><strong>TikTok:</strong> {{ user3.lienTikTok || 'N/A' }}</p>
+      <p><strong>Categories:</strong> {{ user3.categoriesContenu || 'N/A' }}</p>
+    </div>
+
+    <!-- Conditionally display attributes for Client -->
+    <div *ngIf="user3.role === 'client'" class="client-details">
+      <h3>Client Details</h3>
+      <p><strong>Company Name:</strong> {{ user3.nomEntreprise || 'N/A' }}</p>
+      <p><strong>Website:</strong> {{ user3.siteWebEntreprise || 'N/A' }}</p>
+      <p><strong>Sector:</strong> {{ user3.secteurActivite || 'N/A' }}</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="profile-actions">
+      <label for="file-upload" class="file-upload-label">Upload New Image</label>
+      <input id="file-upload" type="file" (change)="onFileSelected($event)" />
+
+      <button (click)="updateUser()" class="btn-update">Update Profile</button>
+      <button (click)="back()" class="btn-back">Go Back</button>
+    </div>
+  </div>
+
+  <!-- Loading state -->
+  <div *ngIf="!user2 && !user3" class="loading">
+    Loading user details...
+  </div>
+</div>
+
+
+

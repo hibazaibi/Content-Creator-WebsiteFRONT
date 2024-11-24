@@ -9,11 +9,11 @@ import {Users} from "../../users";
 import {UserRegisterService} from "../../../user-register.service";
 
 @Component({
-  selector: 'app-listusers',
-  templateUrl: './listusers.component.html',
-  styleUrls: ['./listusers.component.css']
+  selector: 'app-listcreators',
+  templateUrl: './listcreators.component.html',
+  styleUrls: ['./listcreators.component.css']
 })
-export class ListusersComponent implements OnInit {
+export class ListcreatorsComponent implements OnInit {
   public users: Users[] = []
   public editUsers: any = null;
 

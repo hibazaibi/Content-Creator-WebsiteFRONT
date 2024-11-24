@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./AuthenticationCRUD/login/login.component";
 import {ForbiddenComponent} from "./AuthenticationCRUD/forbidden/forbidden.component";
-import {ListusersComponent} from "./AuthenticationCRUD/listusers/listusers.component";
+import {ListcreatorsComponent} from "./AuthenticationCRUD/listcreators/listcreators.component";
 import {ChangepasswordComponent} from "./AuthenticationCRUD/changepassword/changepassword.component";
 import {ForgetpassComponent} from "./AuthenticationCRUD/forgetpass/forgetpass.component";
 import {MdpoubliComponent} from "./AuthenticationCRUD/mdpoublie/mdpoublie.component";
@@ -13,12 +13,15 @@ import {HomeComponent} from "./home/home.component";
 import {OffreComponent} from "./Offre/offre.component";
 import {ChatComponent} from "./chat/chat.component";
 import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component";
+import {ProfileComponent} from "./Profile/profile.component";
+import {ListusersComponent} from "./listusers/listusers.component";
 
 const routes: Routes = [
   {path:'' ,redirectTo:'home',pathMatch:'full'},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'forbiden',component:ForbiddenComponent},
+  {path:"listcreators",component:ListcreatorsComponent},
   {path:"listusers",component:ListusersComponent},
   {path:"changepass",component:ChangepasswordComponent},
   {path:"resetpwd",component:ForgetpassComponent},
@@ -28,7 +31,7 @@ const routes: Routes = [
   {path:"detailsuser/:id",component:DetailsuserComponent},
   {path:"offre/:id",component:OffreComponent},
   {path:"detailsoffre/:id",component:OffredetailsComponent},
-
+  {path:'Profile',component:ProfileComponent},
   {path:"chat/:id",component:ChatComponent},
 
 

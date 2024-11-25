@@ -15,6 +15,7 @@ import {ChatComponent} from "./chat/chat.component";
 import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component";
 import {ProfileComponent} from "./Profile/profile.component";
 import {ListusersComponent} from "./listusers/listusers.component";
+import {DisputeComponent} from "./dispute/dispute.component";
 
 const routes: Routes = [
   {path:'' ,redirectTo:'home',pathMatch:'full'},
@@ -33,6 +34,8 @@ const routes: Routes = [
   {path:"detailsoffre/:id",component:OffredetailsComponent},
   {path:'Profile',component:ProfileComponent},
   {path:"chat/:id",component:ChatComponent},
+  {path:'dispute',component:DisputeComponent},
+
 
 
 ];

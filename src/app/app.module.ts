@@ -29,6 +29,7 @@ import { ChatComponent } from './chat/chat.component';
 import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component";
 import {ProfileComponent} from "./Profile/profile.component";
 import {ListusersComponent} from "./listusers/listusers.component";
+import { DisputeComponent } from './dispute/dispute.component';
 
 
 
@@ -53,7 +54,8 @@ import {ListusersComponent} from "./listusers/listusers.component";
     OffreComponent,
     ChatComponent,
     ProfileComponent,
-    OffredetailsComponent
+    OffredetailsComponent,
+    DisputeComponent
 ],
   imports: [
     BrowserModule,

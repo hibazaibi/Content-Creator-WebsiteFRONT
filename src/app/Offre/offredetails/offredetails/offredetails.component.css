@@ -1,0 +1,79 @@
+/* Ensure the sidebar and content are next to each other */
+.layout-container {
+  display: flex; /* Use flexbox to align children horizontally */
+  height: 100vh; /* Full height for the layout */
+}
+
+app-sidebar {
+  flex: 0 0 250px; /* Fixed width for the sidebar */
+  background-color: #343a40; /* Sidebar background color */
+  color: white;
+}
+
+.content {
+  flex: 1; /* Take up the remaining space */
+  padding: 20px;
+  overflow-y: auto; /* Ensure scrolling if content is too tall */
+}
+
+/* Offer details container styling */
+.offer-details-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Increase max-width to make it visually balanced */
+  margin: 0 auto; /* Center the form */
+}
+
+.details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.details-table th,
+.details-table td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.details-table th {
+  background-color: #343a40;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accept-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.decline-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.accept-button:hover,
+.decline-button:hover {
+  opacity: 0.8;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+

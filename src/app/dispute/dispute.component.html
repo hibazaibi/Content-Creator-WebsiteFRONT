@@ -1,0 +1,39 @@
+<div class="dispute-container">
+  <!-- Create Dispute -->
+  <h2>Create Dispute</h2>
+  <form (submit)="createDispute(); $event.preventDefault();">
+    <label for="offerId">Offer ID:</label>
+    <input
+      type="number"
+      id="offerId"
+      [(ngModel)]="newDispute.offerId"
+      name="offerId"
+      required
+    />
+    <label for="userId">User ID:</label>
+    <input
+      type="number"
+      id="userId"
+      [(ngModel)]="newDispute.userId"
+      name="userId"
+      required
+    />
+    <label for="reason">Reason:</label>
+    <input
+      type="text"
+      id="reason"
+      [(ngModel)]="newDispute.reason"
+      name="reason"
+      required
+    />
+    <label for="details">Details:</label>
+    <textarea
+      id="details"
+      [(ngModel)]="newDispute.details"
+      name="details"
+    ></textarea>
+    <button type="submit">Create Dispute</button>
+  </form>
+
+  <hr />
+</div>

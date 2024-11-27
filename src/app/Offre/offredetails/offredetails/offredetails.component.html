@@ -1,0 +1,51 @@
+<div class="layout-container">
+  <app-sidebar></app-sidebar>
+  <div class="content">
+    <div class="offer-details-container">
+      <h2 id="offer-title">Détails de l'offre</h2>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="!errorMessage">
+        <table class="details-table">
+          <tr>
+            <th>Description</th>
+            <td>{{ offerDetails.description }}</td>
+          </tr>
+          <tr>
+            <th>Budget</th>
+            <td>{{ offerDetails.budget }} TND</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td>{{ offerDetails.status }}</td>
+          </tr>
+          <tr>
+            <th>Client</th>
+            <td>{{ offerDetails.nameclient }}</td>
+          </tr>
+          <tr>
+            <th>Deadline</th>
+            <td>{{ offerDetails.deadline | date: 'dd/MM/yyyy' }}</td>
+          </tr>
+          <tr>
+            <th>Collaboration Details</th>
+            <td>{{ offerDetails.collaborationDetails }}</td>
+          </tr>
+          <tr>
+            <th>Special Requests</th>
+            <td>{{ offerDetails.specialRequests }}</td>
+          </tr>
+        </table>
+
+        <div class="actions">
+          <button class="accept-button" (click)="acceptOffer()">Accepter</button>
+          <button class="decline-button" (click)="declineOffer()">Refuser</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

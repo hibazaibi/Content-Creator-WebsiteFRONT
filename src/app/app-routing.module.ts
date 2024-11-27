@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./AuthenticationCRUD/login/login.component";
 import {ForbiddenComponent} from "./AuthenticationCRUD/forbidden/forbidden.component";
-import {ListcreatorsComponent} from "./AuthenticationCRUD/listcreators/listcreators.component";
+import {ListcreatorsComponent} from "./listcreators/listcreators.component";
 import {ChangepasswordComponent} from "./AuthenticationCRUD/changepassword/changepassword.component";
 import {ForgetpassComponent} from "./AuthenticationCRUD/forgetpass/forgetpass.component";
 import {MdpoubliComponent} from "./AuthenticationCRUD/mdpoublie/mdpoublie.component";
@@ -12,10 +12,11 @@ import {DetailsuserComponent} from "./AuthenticationCRUD/detailsuser/detailsuser
 import {HomeComponent} from "./home/home.component";
 import {OffreComponent} from "./Offre/offre.component";
 import {ChatComponent} from "./chat/chat.component";
-import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component";
+import {OffrelistComponent} from "./Offre/offrelist/offrelist.component";
 import {ProfileComponent} from "./Profile/profile.component";
 import {ListusersComponent} from "./listusers/listusers.component";
 import {DisputeComponent} from "./dispute/dispute.component";
+import {OffredetailsComponent} from "./Offre/offredetails/offredetails/offredetails.component";
 
 const routes: Routes = [
   {path:'' ,redirectTo:'home',pathMatch:'full'},
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path:"updateuser/:id",component:UpdateuserComponent},
   {path:"detailsuser/:id",component:DetailsuserComponent},
   {path:"offre/:id",component:OffreComponent},
-  {path:"detailsoffre/:id",component:OffredetailsComponent},
+  {path:"offrelist",component:OffrelistComponent},
+  {path:"offredetails/:id",component:OffredetailsComponent},
   {path:'Profile',component:ProfileComponent},
   {path:"chat/:id",component:ChatComponent},
   {path:'dispute',component:DisputeComponent},

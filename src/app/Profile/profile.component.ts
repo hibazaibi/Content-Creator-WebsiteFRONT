@@ -40,8 +40,7 @@ interface Users2 {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user2!: Users;
-  user3!: Users2;
+  user3!: Users;
   imageUrl: string | undefined;
   selectedImage!: File;
 
@@ -54,31 +53,23 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const email = localStorage.getItem('email');
-    if (email) {
-      this.fetchUserDetails(email);
+    const iduser = localStorage.getItem('id');
+    if (iduser) {
+      this.fetchUserDetails(iduser);
     }
   }
 
-  private fetchUserDetails(email: string): void {
-    this.userService.getuserbymail(email).subscribe(
+  private fetchUserDetails(id: string): void {
+    this.userService.getuserdetailsbyid(Number(id)).subscribe(
       (data: Users) => {
-        this.user2 = data;
+        this.user3=data ;
       },
       (error: HttpErrorResponse) => {
         console.error("Error fetching user2 details:", error.message);
       }
     );
 
-    this.userService.getuserbymail2(email).subscribe(
-      (data: Users2) => {
-        this.user3 = data;
-        this.loadImage(data.imageid, data.filetype);
-      },
-      (error: HttpErrorResponse) => {
-        console.error("Error fetching user3 details:", error.message);
-      }
-    );
+
   }
 
 
@@ -102,8 +93,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUser(): void {
-    this.user2.image = this.selectedImage;
-    this.userService.updateuserr(this.user2.id, this.user2).subscribe(
+    this.userService.updateuserr(this.user3.id, this.user3).subscribe(
       () => {
         alert("Profile updated successfully.");
         this.ngOnInit();

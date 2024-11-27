@@ -2,26 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Users} from "../../users";
-import {OffreService} from "../offre.service";
+import {OffreData, OffreService} from "../offre.service";
 import {UserService} from "../../user.service";
 
-interface OffreData {
-  description: String;
-  budget: number;
-  OffreStatus: String;
-  useridoffre: String;
-  idcreateur: number;
-  Deadline: Date;
-  collaborationDetails: String;
-  specialRequests: String;
-}
+
 
 @Component({
-  selector: 'app-offredetails',
-  templateUrl: './offredetails.component.html',
-  styleUrls: ['./offredetails.component.css']
+  selector: 'app-offrelist',
+  templateUrl: './offrelist.component.html',
+  styleUrls: ['./offrelist.component.css']
 })
-export class OffredetailsComponent implements OnInit {
+export class OffrelistComponent implements OnInit {
   public offreData: OffreData[] = [];
   public selectedOffre!: OffreData;
   public email!: string;
@@ -31,7 +22,9 @@ export class OffredetailsComponent implements OnInit {
   constructor(
     private offreService: OffreService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+
+
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +35,7 @@ export class OffredetailsComponent implements OnInit {
         (response: Users) => {
           this.user = response;
           this.useridoffre = this.user.id;
-          this.getOffresByCreatorId(this.useridoffre);
+          this.getOffresByCreatorId(localStorage.getItem('id')!);
         },
         (error: HttpErrorResponse) => {
           console.error('Failed to fetch user details:', error);
@@ -55,8 +48,8 @@ export class OffredetailsComponent implements OnInit {
     }
   }
 
-  public getOffresByCreatorId(useridoffre: number): void {
-    this.offreService.getOffreByUserIdOffre(useridoffre).subscribe(
+  public getOffresByCreatorId(useridoffre: string): void {
+    this.offreService.getOffreBycreatorid(useridoffre).subscribe(
       (response: OffreData[]) => {
         this.offreData = response;
       },
@@ -82,8 +75,8 @@ export class OffredetailsComponent implements OnInit {
     }
   }
 
-  public updateOffre(idoffre: number): void {
-    this.router.navigate(['/updateautre', idoffre]);
+  public detailsOffre(idoffre: number): void {
+    this.router.navigate(['/offredetails', idoffre]);
   }
 }
 

@@ -13,7 +13,7 @@ import {RouterModule} from "@angular/router";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {ForbiddenComponent} from "./AuthenticationCRUD/forbidden/forbidden.component";
-import {ListcreatorsComponent} from "./AuthenticationCRUD/listcreators/listcreators.component";
+import {ListcreatorsComponent} from "./listcreators/listcreators.component";
 import {ForgetpassComponent} from "./AuthenticationCRUD/forgetpass/forgetpass.component";
 import {AdduserComponent} from "./AuthenticationCRUD/adduser/adduser.component";
 import {UpdateuserComponent} from "./AuthenticationCRUD/updateuser/updateuser.component";
@@ -26,10 +26,11 @@ import { HomeComponent } from './home/home.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {OffreComponent} from "./Offre/offre.component";
 import { ChatComponent } from './chat/chat.component';
-import {OffredetailsComponent} from "./Offre/offredetails/offredetails.component";
+import {OffrelistComponent} from "./Offre/offrelist/offrelist.component";
 import {ProfileComponent} from "./Profile/profile.component";
 import {ListusersComponent} from "./listusers/listusers.component";
 import { DisputeComponent } from './dispute/dispute.component';
+import { OffredetailsComponent } from './Offre/offredetails/offredetails/offredetails.component';
 
 
 
@@ -54,8 +55,9 @@ import { DisputeComponent } from './dispute/dispute.component';
     OffreComponent,
     ChatComponent,
     ProfileComponent,
-    OffredetailsComponent,
-    DisputeComponent
+    OffrelistComponent,
+    DisputeComponent,
+    OffredetailsComponent
 ],
   imports: [
     BrowserModule,

@@ -1,18 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {OffreService} from "./offre.service";
+import {OffreData, OffreData1, OffreService} from "./offre.service";
 import {NgForm} from "@angular/forms";
-interface OffreData{
-  description:String;
-  budget: number;
-  OffreStatus : String;
-  useridoffre: String;
-  idcreateur:number ;
-  Deadline: Date;
-  collaborationDetails:  String;
-  specialRequests:  String;
 
-}
 @Component({
   selector: 'app-autredemande',
   templateUrl: './offre.component.html',
@@ -33,10 +23,10 @@ export class OffreComponent implements OnInit {
   }
   Offre(offreform: NgForm) {
     this.email = localStorage.getItem('email')!;
-    const offreData: OffreData = {
+    const offreData: OffreData1 = {
       description:offreform.value.description,
       budget: offreform.value.budget,
-      OffreStatus : offreform.value.OffreStatus,
+      status : offreform.value.OffreStatus,
       useridoffre: localStorage.getItem("id")||"",
       idcreateur :this.idcreateur,
       Deadline: offreform.value.Deadline,

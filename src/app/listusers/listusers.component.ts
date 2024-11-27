@@ -12,12 +12,12 @@ import { UserService } from '../user.service';
 })
 export class ListusersComponent implements OnInit {
   public users: Users[] = [];
-
+  public filteredUsers: Users[] = [];
+  public searchKey: string = '';
   constructor(
     private userService: UserService,
     private router: Router
   ) {}
-
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -27,6 +27,7 @@ export class ListusersComponent implements OnInit {
     this.userService.getAllUsers().subscribe(
       (response: Users[]) => {
         this.users = response;
+        this.filteredUsers = response;
         console.log(this.users);
       },
       (error: HttpErrorResponse) => {
@@ -34,7 +35,6 @@ export class ListusersComponent implements OnInit {
       }
     );
   }
-
 
   public deleteUser(id: number): void {
     if (confirm('Are you sure you want to delete this user?')) {
@@ -60,5 +60,16 @@ export class ListusersComponent implements OnInit {
       }
     );
   }
+
+  public applySearch(): void {
+    const lowerKey = this.searchKey.toLowerCase();
+    this.filteredUsers = this.users.filter(
+      user =>
+        user.nom.toLowerCase().includes(lowerKey) ||
+        user.prenom.toLowerCase().includes(lowerKey) ||
+        user.email.toLowerCase().includes(lowerKey)
+    );
+  }
 }
+
 

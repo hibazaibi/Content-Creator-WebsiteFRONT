@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Vos Offres</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="d-flex">
+  <!-- Sidebar Component -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Main Content -->
+  <section class="ftco-section flex-grow-1">
+    <div class="container" style="margin-left:330px;margin-top:-50px;">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+          <h2 class="heading-section">Vos Offres</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-wrap">
+            <table class="table table-responsive-xl">
+              <thead>
+              <tr>
+                <th>Description</th>
+                <th>Budget</th>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Deadline</th>
+                <th>Collaboration Details</th>
+                <th>Special Requests</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="alert" role="alert" *ngIf="offreData.length === 0">
+                <td colspan="8" class="text-center">Aucune offre disponible pour le moment.</td>
+              </tr>
+              <tr class="alert" role="alert" *ngFor="let offre of offreData">
+                <td>{{ offre.description }}</td>
+                <td>{{ offre.budget }} TND</td>
+                <td class="status">
+                  <span class="{{ offre.status === 'Active' ? 'active' : 'waiting' }}">{{ offre.status }}</span>
+                </td>
+                <td>{{ offre.nameclient }}</td>
+                <td>{{ offre.Deadline | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ offre.collaborationDetails }}</td>
+                <td>{{ offre.specialRequests }}</td>
+                <td>
+                  <button class="btn btn-primary btn-sm" (click)="detailsOffre(offre.idcreateur)">Voir details</button>
+                  <button class="btn btn-danger btn-sm" (click)="deleteOffre(offre.idcreateur)">Supprimer</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

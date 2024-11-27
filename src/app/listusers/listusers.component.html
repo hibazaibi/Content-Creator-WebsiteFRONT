@@ -1,77 +1,100 @@
-<div class="main-container" style="display: flex; flex-direction: row; gap: 20px;">
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Users List</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="main-container d-flex" style="gap: 20px;">
+  <!-- Sidebar -->
   <app-sidebar style="width: 20%;"></app-sidebar>
-<div class="container-fluid d-flex" style="margin-left:1%; width: 70%">
-  <div class="flex-grow-1">
-    <div class="container" style="position: relative">
+
+  <!-- Main Content -->
+  <section class="ftco-section flex-grow-1" style="margin-top:-55px;">
+    <div class="container">
       <div class="row">
-        <div class="col-md-9 col-sm-7" style="margin-top:20px;">
-          <h3 style="color: #034D89;">
-            <i class="fa fa-list" style="font-size:30px;margin-top:-10px;"></i> Users List
+        <div class="col-md-9 col-sm-7">
+          <h3 style="color: #034D89; margin-top: 10px;">
+            <i  style="font-size:30px; margin-right: 10px;"></i> Users List
           </h3>
         </div>
         <div class="col-md-3 col-sm-5">
           <form method="get" role="form" class="search-form-full">
             <div class="form-group">
               <input
-                type="search"
-                #key="ngModel"
-                ngModel
-                name="key"
-                id="searchName"
+                type="text"
+                [(ngModel)]="searchKey"
+                (input)="applySearch()"
                 class="form-control"
-                placeholder="Recherche..."
-                required
-                style="margin-top:20px;width:210px;"
+                placeholder="Search users..."
               />
-            </div>
+    </div>
           </form>
         </div>
       </div>
-      <div class="users-list">
-        <div class="member-entry" *ngFor="let user of users" [ngClass]="{'pending-user': !user.active, 'active-user': user.active}">
 
-          <a class="member-img">
-            <img [src]="user.imageUrl" class="img-rounded">
-            <i class="fa fa-forward"></i>
-          </a>
-
-          <div class="member-details">
-            <h4> <a>{{user.nom}} {{user.prenom}}</a> </h4>
-
-            <div class="row info-list">
-              <div class="col-sm-4">
-                <i class="fa fa-envelope"></i>
-                {{user.email}}
-              </div>
-              <div class="col-sm-4">
-                <i class="fa fa-user"></i>
-                {{user.role}}
-              </div>
-              <div class="clear"></div>
-
-              <div class="col-sm-4" style="margin-left:85%;margin-top:-50px;">
-                <div *ngIf="!user.active">
-                  <button (click)="activateUser(user.id)" class="btn btn-success">Activate</button>
+      <div class="table-wrap" style="margin-top: 20px;">
+        <table class="table table-responsive-xl">
+          <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngIf="users.length === 0">
+            <td colspan="6" class="text-center">No User Found.</td>
+          </tr>
+          <tr *ngFor="let user of users" [ngClass]="{'pending-user': !user.active, 'active-user': user.active}">
+            <td>
+              <div class="img" [style.backgroundImage]="'url(' + user.imageUrl + ')'"></div>
+            </td>
+            <td>{{ user.nom }} {{ user.prenom }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td class="status">
+                  <span class="{{ user.active ? 'active' : 'waiting' }}">
+                    {{ user.active ? 'Active' : 'Pending' }}
+                  </span>
+            </td>
+            <td>
+              <div class="d-flex">
+                <div *ngIf="!user.active" style="margin-right: 10px;">
+                  <button (click)="activateUser(user.id)" class="btn btn-success btn-sm">Activate</button>
                 </div>
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary btn-sm"
                   [routerLink]="['/detailsuser', user.id]"
-                  style="margin-right: 5px;">
+                  style="margin-right: 10px;">
                   <i class="fa fa-info" style="color: #fff;"></i> Details
                 </button>
                 <button
-                  class="btn btn-danger"
-                  (click)="deleteUser(user.id)"
-                  style="margin-right: 20px;">
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteUser(user.id)">
                   <i class="fa fa-trash" style="color: #fff;"></i> Delete
                 </button>
               </div>
-            </div>
-          </div>
-          </div>
-          </div>
-        </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
+  </section>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
 

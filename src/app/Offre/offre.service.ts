@@ -4,15 +4,17 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 
 export interface OffreData{
+  idOffre: number;
   description:String;
   budget: number;
   status : String;
   useridoffre: String;
   idcreateur:number ;
   nameclient : string;
- Deadline: Date;
+ deadline: Date;
   collaborationDetails:  String;
 specialRequests:  String;
+isev:boolean;
 }
 export interface OffreData1{
   description:String;
@@ -20,7 +22,7 @@ export interface OffreData1{
   status : String;
   useridoffre: String;
   idcreateur:number ;
-  Deadline: Date;
+  deadline: Date;
   collaborationDetails:  String;
   specialRequests:  String;
 }
@@ -39,41 +41,42 @@ console.log(offreData)
     return this.httpclient.get<OffreData>(this.PATH_OF_API+'/api/offers/find/'+idoffre);
 
   }
-  acceptOffer(id: number): Observable<string> {
-    return this.httpclient.post(`${this.PATH_OF_API}/api/offers/accept/${id}`, null, {
-      responseType: 'text', // Explicitly set the response type as text
-    });
+  acceptOffer(id: number) {
+    console.log(id);
+    return this.httpclient.put(this.PATH_OF_API+'/api/offers/accept/'+id,null);
   }
 
-  declineOffer(id: number): Observable<string> {
-    return this.httpclient.post(`${this.PATH_OF_API}/api/offers/decline/${id}`, null, {
-      responseType: 'text', // Explicitly set the response type as text
-    });
+  declineOffer(id: number) {
+    return this.httpclient.put(this.PATH_OF_API + '/api/offers/decline/' + id, null);
   }
+    done(id: number){
+      return this.httpclient.put(this.PATH_OF_API+'/api/offers/complete/'+id, null);
+    }
+
 
   public getOffre(): Observable<OffreData[]> {
     return this.httpclient.get<OffreData[]>(this.PATH_OF_API + '/api/offers/all');
 
   }
-  public getOffreByUserIdOffre(useridoffre:number) {
+  public getOffreByUserIdOffre(useridoffre:string) {
     return this.httpclient.get<OffreData[]>(this.PATH_OF_API + '/api/offers/find2/'+useridoffre);
 
   }
-  public getOffreBycreatorid(useridoffre:string) {
-    return this.httpclient.get<OffreData[]>(this.PATH_OF_API + '/api/offers/find3/'+useridoffre);
+
+  public getOffreBycreatorid(idcreateur:string) {
+    return this.httpclient.get<OffreData[]>(this.PATH_OF_API + '/api/offers/find3/'+idcreateur);
 
   }
   public deleteOffre(idoffre: number): Observable<void>{
     return this.httpclient.delete<void>(this.PATH_OF_API + '/api/offers/delete/'+idoffre);
   }
-
+  updateOffre(offerId: number, offerData: any) {
+    return this.httpclient.put(this.PATH_OF_API + '/api/offers/update/' + offerId, offerData);  }
 
   public getTotalOffres() :Observable<number> {
     return this.httpclient.get<number>(this.PATH_OF_API + "/api/offres/autre/total")
   }
-  public getTotalAutres2(email:string) :Observable<number> {
-    return this.httpclient.get<number>(this.PATH_OF_API + "/api/demande3/autre/total/"+email)
-  }
+
 }
 
 

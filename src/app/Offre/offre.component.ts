@@ -29,7 +29,7 @@ export class OffreComponent implements OnInit {
       status : offreform.value.OffreStatus,
       useridoffre: localStorage.getItem("id")||"",
       idcreateur :this.idcreateur,
-      Deadline: offreform.value.Deadline,
+      deadline: offreform.value.deadline,
       collaborationDetails: offreform.value.collaborationDetails,
       specialRequests:  offreform.value.specialRequests
 
@@ -37,7 +37,7 @@ export class OffreComponent implements OnInit {
 
     this.offreService.Offre(offreData).subscribe((response: any) => {
 
-      alert("OfferAdded")
+      alert("Offer Added Successfully");
 
       this.gotolist();
     }, (error) => {
@@ -45,7 +45,7 @@ export class OffreComponent implements OnInit {
     });
   }
   gotolist() {
-    this.router.navigate(['/offredetails']);
+    this.router.navigate(['/offrelist']);
   }
 }
 

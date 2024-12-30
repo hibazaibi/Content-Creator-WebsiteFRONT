@@ -67,7 +67,7 @@
       </div>
 
       <div class="formbold-mb-3">
-        <label for="password" class="formbold-form-label">Password</label>
+        <label for="password" class="formbold-form-label">Password <span style="color: #D72A12">*</span></label>
         <input
           type="password"
           name="password"
@@ -76,6 +76,36 @@
           class="formbold-form-input"
           placeholder="Enter your password"
         />
+      </div>
+      <div class="formbold-input-flex">
+        <div>
+          <label for="nom" class="formbold-form-label">
+            Phone Number <span style="color: #D72A12">*</span>
+          </label>
+          <input
+            type="text"
+            name="numtel"
+            id="numtel"
+            ngModel
+            class="formbold-form-input"
+            placeholder="Enter your phone number"
+            required
+          />
+        </div>
+        <div>
+          <label for="prenom" class="formbold-form-label">
+            Date Of Birth<span style="color: #D72A12">*</span>
+          </label>
+          <input
+            type="text"
+            name="dateNaissance"
+            id="dateNaissance"
+            ngModel
+            class="formbold-form-input"
+            placeholder="Enter your last name"
+            required
+          />
+        </div>
       </div>
       <div class="formbold-mb-3">
         <label for="image" class="formbold-form-label">Profile Picture</label>
@@ -93,7 +123,7 @@
         <select name="role" id="role" ngModel class="formbold-form-input" required>
           <option value="" selected>--Are you a client or creator?--</option>
           <option value="CLIENT">Client</option>
-          <option value="CREATOR">Créateur</option>
+          <option value="CREATOR">Creator</option>
         </select>
       </div>
 
@@ -125,14 +155,24 @@ ngModel
         </div>
       <div class="formbold-mb-3">
         <label for="secteurActivite" class="formbold-form-label">Industry</label>
-        <input
+        <select
           type="text"
           name="secteurActivite"
           id="secteurActivite"
           ngModel
           class="formbold-form-input"
-          placeholder="Enter your industry"
-        />
+        >
+        <option value="" selected>--Select your industry--</option>
+        <option value="Technology">Technology</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Finance">Finance</option>
+        <option value="Education">Education</option>
+        <option value="Retail">Retail</option>
+        <option value="Media">Media</option>
+        <option value="Construction">Construction</option>
+        <option value="Hospitality">Hospitality</option>
+        <option value="Other">Other</option>
+        </select>
       </div>
       </div>
 
@@ -170,13 +210,23 @@ ngModel
           </div>
         <div class="formbold-mb-3">
           <label for="categoriesContenu" class="formbold-form-label">Content Categories</label>
-          <input
+          <select
             type="text"
             name="categoriesContenu"
             id="categoriesContenu"
             ngModel              class="formbold-form-input"
-            placeholder="Enter your content categories"
-          />
+          >
+            <option value="" selected>--Select your content category--</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Technology">Technology</option>
+            <option value="Travel">Travel</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Food">Food</option>
+            <option value="Education">Education</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Art">Art</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
       </div>
 

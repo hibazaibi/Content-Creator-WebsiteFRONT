@@ -1,22 +1,37 @@
 <div class="layout-container">
   <app-sidebar></app-sidebar>
   <div class="content">
-    <div class="offer-details-container">
-      <h2 id="offer-title">Détails de l'offre</h2>
+    <div id="offer-details-container">
+      <h1 id="details-title">Offer details</h1>
+      <p id="details-description">See detailed offer information below.</p>
 
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
 
       <div *ngIf="!errorMessage">
-        <table class="details-table">
+        <table id="details-table">
           <tr>
             <th>Description</th>
-            <td>{{ offerDetails.description }}</td>
+            <td>
+              <ng-container *ngIf="offerDetails.status === 'EN_ATTENTE'; else displayDescription">
+                <input [(ngModel)]="offerDetails.description" />
+              </ng-container>
+              <ng-template #displayDescription>
+                {{ offerDetails.description }}
+              </ng-template>
+            </td>
           </tr>
           <tr>
             <th>Budget</th>
-            <td>{{ offerDetails.budget }} TND</td>
+            <td>
+              <ng-container *ngIf="offerDetails.status === 'EN_ATTENTE'; else displayBudget">
+                <input type="number" [(ngModel)]="offerDetails.budget" />
+              </ng-container>
+              <ng-template #displayBudget>
+                {{ offerDetails.budget }} TND
+              </ng-template>
+            </td>
           </tr>
           <tr>
             <th>Status</th>
@@ -28,24 +43,72 @@
           </tr>
           <tr>
             <th>Deadline</th>
-            <td>{{ offerDetails.deadline | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              <ng-container *ngIf="offerDetails.status === 'EN_ATTENTE'; else displayDeadline">
+                <input type="date" [(ngModel)]="offerDetails.deadline" />
+              </ng-container>
+              <ng-template #displayDeadline>
+                {{ offerDetails.deadline | date: 'dd/MM/yyyy' }}
+              </ng-template>
+            </td>
           </tr>
           <tr>
             <th>Collaboration Details</th>
-            <td>{{ offerDetails.collaborationDetails }}</td>
+            <td>
+              <ng-container *ngIf="offerDetails.status === 'EN_ATTENTE'; else displayCollaboration">
+                <textarea [(ngModel)]="offerDetails.collaborationDetails"></textarea>
+              </ng-container>
+              <ng-template #displayCollaboration>
+                {{ offerDetails.collaborationDetails }}
+              </ng-template>
+            </td>
           </tr>
           <tr>
             <th>Special Requests</th>
-            <td>{{ offerDetails.specialRequests }}</td>
+            <td>
+              <ng-container *ngIf="offerDetails.status === 'EN_ATTENTE'; else displayRequests">
+                <textarea [(ngModel)]="offerDetails.specialRequests"></textarea>
+              </ng-container>
+              <ng-template #displayRequests>
+                {{ offerDetails.specialRequests }}
+              </ng-template>
+            </td>
           </tr>
         </table>
 
-        <div class="actions">
-          <button class="accept-button" (click)="acceptOffer()">Accepter</button>
-          <button class="decline-button" (click)="declineOffer()">Refuser</button>
+        <div id="action-buttons">
+          <button
+            *ngIf="userAuthService.isCreator() && offerDetails.status=='EN_ATTENTE'"
+            id="accept-button"
+            (click)="acceptOffer()">
+            Accept
+          </button>
+          <button
+            *ngIf="userAuthService.isCreator() && offerDetails.status=='EN_ATTENTE'"
+            id="decline-button"
+            (click)="declineOffer()">
+            Refuse
+          </button>
+          <div *ngIf="isLoading" class="spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+          </div>
+          <button
+            *ngIf="offerDetails.status === 'EN_ATTENTE'"
+            id="save-button"
+            (click)="saveChanges()">
+            Save Changes
+          </button>
+          <button
+            *ngIf="userAuthService.isCreator() && offerDetails.status=='ACCEPTEE'"
+            id="done"
+            (click)="doneoffre()">
+            Complete the offer
+          </button>
+          <button id="return-button" (click)="gotolist()">
+            Return to the list
+          </button>
         </div>
       </div>
     </div>
   </div>
 </div>
-

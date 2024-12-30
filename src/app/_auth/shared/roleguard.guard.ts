@@ -13,7 +13,8 @@ export class RoleguardGuard implements CanActivate {
   canActivate(): boolean {
     const isAdmin = this.auth.isAdmin();
     if (!isAdmin) {
-      alert('Accès refusé : Cette page est réservée aux personnes autorisées uniquement.');
+      alert('Access Denied: This page is reserved for authorized persons only.\n' +
+        '\n');
       this.auth.onlogout();
       this.router.navigate(['/login']);
     }

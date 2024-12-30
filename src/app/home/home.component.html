@@ -5,68 +5,152 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CreatorHub</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
 
 <!-- Header -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
   <a class="navbar-brand logo-text" href="#">Creator<span class="hub">Hub</span></a>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
-      <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-      <li class="nav-item"><a class="btn btn-primary" href="/register">Sign Up</a></li>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto align-items-center">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-primary ml-3 px-4" href="/register">Sign Up</a>
+      </li>
     </ul>
   </div>
 </nav>
 
+
 <!-- Hero Section -->
-<div class="hero-section">
+<div class="hero-section" >
   <div class="hero-content">
     <h1>Find and Work Easily with Top Content Creators</h1>
     <p>Your projects deserve the best talents. Our platform connects you with skilled creators for your content and marketing needs.</p>
     <a href="/listcreators" class="btn btn-primary">Explore Our Creators</a>
   </div>
+  <div class="hero-images">
   <!-- Decorative Circles -->
-  <div class="color-circle circle-red"></div>
-  <div class="color-circle circle-blue"></div>
-  <div class="color-circle circle-green"></div>
+  <img src="assets/images/online-content-creators-are-standing-in-front-of-a-large-monitor-and-saying-hello-vector.jpg" alt="Image 1" class="hero-image">
+</div>
 </div>
 
 <!-- Creator Profiles -->
 <div class="container">
   <h2 class="text-center mt-5">Top Creators</h2>
   <div class="row">
-    <div class="col-md-4 creator-profile">
-      <img src="https://via.placeholder.com/150" alt="Creator 1">
-      <h5>John Doe</h5>
-      <p>Photographer | 4.9⭐</p>
-      <p>Specialist in fashion and product photography. Creates captivating visuals for brands.</p>
+    <div class="col-md-4 creator-profile"  *ngFor="let creator of topCreators">
+      <img [src]="getImageUrl(creator)" *ngIf="creator.image" alt="Post Image" alt="Creator 1">
+      <h5 > {{ creator.nom }} {{ creator.prenom }} </h5>
+      <p>{{ creator.avgrattings }}⭐</p>
+      <p>{{ creator.bio || 'No bio available' }}</p>
     </div>
-    <div class="col-md-4 creator-profile">
-      <img src="https://via.placeholder.com/150" alt="Creator 2">
-      <h5>Jane Smith</h5>
-      <p>Graphic Designer | 4.8⭐</p>
-      <p>Creator of unique designs and branding. Turns ideas into visual identities.</p>
-    </div>
-    <div class="col-md-4 creator-profile">
-      <img src="https://via.placeholder.com/150" alt="Creator 3">
-      <h5>Alex Brown</h5>
-      <p>Videographer | 4.7⭐</p>
-      <p>Expert in promotional videos and storytelling. Helps brands tell their story.</p>
-    </div>
+
   </div>
 </div>
 
 <!-- Why Choose Us Section -->
-<div class="why-choose-us">
+<!-- Why Choose Us Section -->
+<div class="why-choose-us py-5">
   <div class="container">
-    <h2>Why Choose Us?</h2>
-    <p>Our platform provides access to the top-rated creators who specialize in various fields, from photography and videography to graphic design and social media marketing. By choosing us, you benefit from streamlined project management, transparent pricing, and unmatched quality in creator services.</p>
+    <h2 class="mb-4">Why Choose Us?</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="feature-card p-4 text-center bg-white shadow-sm rounded">
+          <i class="fas fa-user-check fa-3x text-secondary mb-3"></i>
+          <h5>Verified Creators</h5>
+          <p>Work with trusted and skilled creators for guaranteed results.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card p-4 text-center bg-white shadow-sm rounded">
+          <i class="fas fa-clock fa-3x text-secondary mb-3"></i>
+          <h5>Quick Turnaround</h5>
+          <p>Save time by easily connecting with creators ready to collaborate.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card p-4 text-center bg-white shadow-sm rounded">
+          <i class="fas fa-dollar-sign fa-3x text-secondary mb-3"></i>
+          <h5>Affordable Pricing</h5>
+          <p>Get top-quality services without exceeding your budget.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<!-- Testimonial Section -->
+<div class="testimonials py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">What Our Users Say</h2>
+    <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="testimonial p-4 text-center bg-white shadow-sm rounded">
+            <p class="mb-0">"CreatorHub helped me find the perfect influencer for my campaign in no time!"</p>
+            <footer class="blockquote-footer mt-2">John Doe, Marketing Manager</footer>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Statistics Section -->
+<div class="why-choose-us py-5">
+
+<div class="statistics py-5">
+  <div class="container text-center">
+    <h2 class="mb-4">Our Impact</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="stat-box p-4 bg-white shadow-sm rounded">
+          <h3>500+</h3>
+          <p>Top Creators</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-box p-4 bg-white shadow-sm rounded">
+          <h3>1000+</h3>
+          <p>Successful Projects</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-box p-4 bg-white shadow-sm rounded">
+          <h3>250+</h3>
+          <p>Happy Clients</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-box p-4 bg-white shadow-sm rounded">
+          <h3>24/7</h3>
+          <p>Customer Support</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<section class="cta-banner text-white text-center py-5" style="background-color: white;">
+  <div class="container">
+    <h2 class="mb-4" style="color: #081306">Ready to Start Your Journey?</h2>
+    <a href="/register" class="btn btn-light btn-lg px-4">Join Us Now</a>
+  </div>
+</section>
 
 <!-- Footer -->
 <footer class="bg-light text-center py-4">
@@ -76,6 +160,8 @@
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
 </body>
 </html>
 

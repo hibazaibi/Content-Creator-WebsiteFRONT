@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {UserService} from "../user.service";
 
 import {Users} from "../users";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-listcreators',
@@ -12,7 +13,7 @@ import {Users} from "../users";
 export class ListcreatorsComponent implements OnInit {
   public creators: Users[] = [];
 
-  constructor(private userService: UserService, private router: Router ) {}
+  constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizer ) {}
 
   ngOnInit(): void {
     this.getCreators();
@@ -33,6 +34,14 @@ export class ListcreatorsComponent implements OnInit {
   makeOffer(id: number) {
     this.router.navigate(['/offre', id]);
   }
+  getImageUrl(creator: Users): SafeUrl | null {
+    if (creator.image) {
+      return this.sanitizer.bypassSecurityTrustUrl(`data:${creator.image.fileType};base64,${creator.image.data}`);
+    }
+    return null;
+  }
+
+  protected readonly Math = Math;
 }
 
 

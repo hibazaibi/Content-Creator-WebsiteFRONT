@@ -2,32 +2,22 @@
 .hero-section {
   background-color: #f8f9fa;
   padding: 60px 0;
-  position: relative;
-  overflow: hidden;
+  display: flex; /* Flexbox to align content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  gap: 30px; /* Space between the content and the image */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  height: 500px;
+  margin-top: -5px;
+  position: relative; /* For decorative circles positioning */
+  overflow: hidden; /* Prevent overflow of circles */
 }
-.hero-content {
-  max-width: 500px;
-  margin-left: 5%;
-  text-align: left;
-}
-.hero-content h1 {
-  font-weight: bold;
-  color: #333;
-}
-.hero-content p {
-  color: #666;
-  margin-top: 10px;
-}
-.hero-content .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  padding: 10px 20px;
-  font-size: 18px;
-  margin-top: 20px;
-}
+
+/* Decorative Circles Animation */
 .color-circle {
   border-radius: 50%;
   position: absolute;
+  animation: float 5s infinite ease-in-out; /* Smooth floating animation */
 }
 .circle-red {
   background: #c71010;
@@ -35,6 +25,7 @@
   height: 200px;
   top: 50px;
   right: 10%;
+  animation-delay: 0.5s;
 }
 .circle-blue {
   background: blue;
@@ -42,6 +33,7 @@
   height: 100px;
   top: 180px;
   right: 20%;
+  animation-delay: 1s;
 }
 .circle-green {
   background: #259b25;
@@ -49,10 +41,68 @@
   height: 50px;
   top: 250px;
   right: 25%;
+  animation-delay: 1.5s;
 }
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.hero-content {
+  max-width: 500px;
+  text-align: left;
+}
+
+.hero-content h1 {
+  font-weight: bold;
+  color: #333;
+  animation: fadeInDown 1.5s ease-in-out; /* Add fade-in animation */
+}
+
+.hero-content p {
+  color: #666;
+  margin-top: 10px;
+  animation: fadeInUp 2s ease-in-out; /* Add fade-in animation */
+}
+
+.hero-content .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+.hero-content .btn-primary:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-images {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 500px; /* Set a fixed width for the image */
+  height: auto; /* Maintain aspect ratio */
+  animation: zoomIn 2s ease-in-out; /* Add zoom-in animation */
+}
+
 .creator-profile {
   text-align: center;
   margin-top: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+.creator-profile:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 .creator-profile img {
   border-radius: 50%;
@@ -60,6 +110,7 @@
   height: 150px;
   object-fit: cover;
 }
+
 .brand-logos {
   margin: 40px 0;
 }
@@ -67,22 +118,118 @@
   max-height: 50px;
   margin: 0 15px;
   opacity: 0.6;
+  transition: opacity 0.3s ease; /* Add smooth transition */
 }
+.brand-logos img:hover {
+  opacity: 1; /* Full opacity on hover */
+}
+
 .why-choose-us {
   background-color: #e9ecef;
   padding: 60px 0;
   text-align: center;
+
 }
 .why-choose-us h2 {
-  font-weight: bold;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 30px;
 }
+
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card i {
+  color: var(--secondary-color);
+}
+.testimonials h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+
+.testimonial {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.testimonial p {
+  font-style: italic;
+  color: var(--gray);
+}
+
+.testimonial footer {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
 .why-choose-us p {
   color: #555;
+  animation: fadeInUp 2s ease-in-out; /* Add fade-in animation */
 }
+.choose-us {
+  background-color: #f8f9fa;
+}
+
+.choose-us h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.choose-us .card {
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.choose-us .card:hover {
+  transform: translateY(-10px);
+}
+
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
 }
 .logo-text .hub {
   color: #007bff;
+}
+
+/* Keyframes for animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

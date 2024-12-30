@@ -1,79 +1,132 @@
-/* Ensure the sidebar and content are next to each other */
+/* General Layout */
 .layout-container {
-  display: flex; /* Use flexbox to align children horizontally */
-  height: 100vh; /* Full height for the layout */
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f4f9;
 }
 
 app-sidebar {
-  flex: 0 0 250px; /* Fixed width for the sidebar */
-  background-color: #343a40; /* Sidebar background color */
-  color: white;
+  flex-shrink: 0;
 }
 
 .content {
-  flex: 1; /* Take up the remaining space */
+  flex-grow: 1;
   padding: 20px;
-  overflow-y: auto; /* Ensure scrolling if content is too tall */
 }
 
-/* Offer details container styling */
-.offer-details-container {
+/* Offer Details Container */
+#offer-details-container {
+  max-width: 800px;
+  margin: 50px auto;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  max-width: 800px; /* Increase max-width to make it visually balanced */
-  margin: 0 auto; /* Center the form */
+  border-radius: 10px;
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.details-table {
+#details-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #034D89;
+}
+
+#details-description {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Details Table */
+#details-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-.details-table th,
-.details-table td {
-  text-align: left;
-  padding: 10px;
+#details-table th,
+#details-table td {
   border: 1px solid #ddd;
+  padding: 10px;
 }
 
-.details-table th {
-  background-color: #343a40;
-  color: white;
+#details-table th {
+  text-align: left;
 }
 
-.actions {
-  display: flex;
-  justify-content: space-between;
+#details-table td {
+  background-color: #f8f9fa;
+  color: #333;
 }
 
-.accept-button {
+/* Action Buttons */
+#action-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#accept-button,
+#decline-button,
+#done,
+#save-button,
+#return-button{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#accept-button {
   background-color: #28a745;
   color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 3px;
-  cursor: pointer;
 }
 
-.decline-button {
+#accept-button:hover {
+  background-color: #218838;
+}
+
+#decline-button {
   background-color: #dc3545;
   color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 3px;
-  cursor: pointer;
 }
 
-.accept-button:hover,
-.decline-button:hover {
-  opacity: 0.8;
+#decline-button:hover {
+  background-color: #c82333;
+}
+#done{
+  background-color: #2870cd;
+  color: white;
+}
+#done:hover{
+  background-color: #4696e8;
+  color: white;
+}
+#save-button{
+  background-color: #1b7754;
+  color: white;
+}
+#save-button:hover{
+  background-color: #2e932a;
+  color: white;
+}
+#return-button{
+  background-color: #2870cd;
+  color: white;
+}
+#return-button:hover{
+  background-color: #3c81c6;
+  color: white;
 }
 
+/* Error Message */
 .error-message {
   color: red;
   font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
 }
-

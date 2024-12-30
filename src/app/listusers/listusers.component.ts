@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Users } from '../users';
 import { UserService } from '../user.service';
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {UserAuthService} from "../user-auth.service";
 
 @Component({
   selector: 'app-listusers',
@@ -14,9 +16,12 @@ export class ListusersComponent implements OnInit {
   public users: Users[] = [];
   public filteredUsers: Users[] = [];
   public searchKey: string = '';
+  public isadmin: boolean = false;
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,private sanitizer: DomSanitizer ,
+    private userAuthService: UserAuthService,
+
   ) {}
 
   ngOnInit(): void {
@@ -51,7 +56,8 @@ export class ListusersComponent implements OnInit {
 
   public activateUser(id: number): void {
     this.userService.activateUser(id).subscribe(
-      () => {
+      (response) => {
+        console.log('Backend response:', response);
         alert('User activated successfully');
         this.getAllUsers();
       },
@@ -69,6 +75,12 @@ export class ListusersComponent implements OnInit {
         user.prenom.toLowerCase().includes(lowerKey) ||
         user.email.toLowerCase().includes(lowerKey)
     );
+  }
+  getImageUrl(user: Users): SafeUrl | null {
+    if (user.image) {
+      return this.sanitizer.bypassSecurityTrustUrl(`data:${user.image.fileType};base64,${user.image.data}`);
+    }
+    return null;
   }
 }
 

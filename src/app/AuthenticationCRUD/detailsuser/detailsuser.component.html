@@ -1,57 +1,81 @@
-<div *ngIf="user3; else loading">
-  <div class="container bootstrap snippets bootdey">
-    <div class="panel-body inf-content">
-      <div class="row">
-        <div class="col-md-4">
-          <img
-            *ngIf="imageUrl"
-            [src]="imageUrl"
-            alt=""
-            class="img-circle img-thumbnail isTooltip"
-            style="width:600px;"
-          />
+<div class="dashboard-container">
+  <app-sidebar></app-sidebar>
+
+  <div class="dashboard-content">
+    <div *ngIf="user3; else loading">
+      <div class="user-card">
+        <div class="user-card-header">
+          <div class="profile-image">
+            <img [src]="getImageUrl(user3)" *ngIf="user3.image"              class="img-fluid"
+/>
+          </div>
+          <div class="user-basic-info">
+            <h2>{{ user3.nom }} {{ user3.prenom }}</h2>
+            <p class="user-role">{{ user3.role }}</p>
+          </div>
         </div>
-        <div class="col-md-6">
-          <h3>Details Information</h3>
-          <hr />
-          <table class="table table-user-information">
-            <tbody>
-            <tr>
-              <td><strong>Nom et Prénom</strong></td>
-              <td>{{ user3.nom }} {{ user3.prenom }}</td>
-            </tr>
-            <tr>
-              <td><strong>Email</strong></td>
-              <td>{{ user3.email }}</td>
-            </tr>
-            <tr>
-              <td><strong>Role</strong></td>
-              <td>{{ user3.role }}</td>
-            </tr>
-            <tr *ngIf="user3.role === 'CLIENT'">
-              <td><strong>Nom Entreprise</strong></td>
-              <td>{{ user3.nomEntreprise }}</td>
-            </tr>
-            <tr *ngIf="user3.role === 'CLIENT'">
-              <td><strong>Site Web Entreprise</strong></td>
-              <td>{{ user3.siteWebEntreprise }}</td>
-            </tr>
-            <tr *ngIf="user3.role === 'CREATOR'">
-              <td><strong>Lien Instagram</strong></td>
-              <td>{{ user3.lienInsta }}</td>
-            </tr>
-            <tr *ngIf="user3.role === 'CREATOR'">
-              <td><strong>Lien TikTok</strong></td>
-              <td>{{ user3.lienTikTok }}</td>
-            </tr>
-            </tbody>
-          </table>
+
+        <div class="user-card-body">
+          <h3 class="section-title">Personal Information</h3>
+          <div class="info-row">
+            <span>Date of Birth:</span>
+            <span>{{ user3.dateNaissance | date }}</span>
+          </div>
+          <div class="info-row">
+            <span>Phone Number:</span>
+            <span>{{ user3.numtel }}</span>
+          </div>
+          <div class="info-row">
+            <span>Email:</span>
+            <span>{{ user3.email }}</span>
+          </div>
+
+          <ng-container *ngIf="user3.role === 'CLIENT'">
+            <h3 class="section-title">Company Details</h3>
+            <div class="info-row">
+              <span>Company Name:</span>
+              <span>{{ user3.nomEntreprise }}</span>
+            </div>
+            <div class="info-row">
+              <span>Website:</span>
+              <a [href]="user3.siteWebEntreprise" target="_blank">{{ user3.siteWebEntreprise }}</a>
+            </div>
+            <div class="info-row">
+              <span>Activity Sector:</span>
+              <span>{{ user3.secteurActivite }}</span>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="user3.role === 'CREATOR'">
+            <h3 class="section-title">Content Creator Details</h3>
+            <div class="info-row">
+              <span>Instagram:</span>
+              <a [href]="user3.lienInsta" target="_blank">{{ user3.lienInsta }}</a>
+            </div>
+            <div class="info-row">
+              <span>TikTok:</span>
+              <a [href]="user3.lienTikTok" target="_blank">{{ user3.lienTikTok }}</a>
+            </div>
+            <div class="info-row">
+              <span>Content Categories:</span>
+              <span>{{ user3.categoriesContenu }}</span>
+            </div>
+            <div class="info-row">
+              <span>Bio:</span>
+              <span>{{ user3.bio }}</span>
+            </div>
+          </ng-container>
+
+
         </div>
       </div>
     </div>
+
+    <ng-template #loading>
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Loading user details...</p>
+      </div>
+    </ng-template>
   </div>
 </div>
-
-<ng-template #loading>
-  <p>Loading user details...</p>
-</ng-template>

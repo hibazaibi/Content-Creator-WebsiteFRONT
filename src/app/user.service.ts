@@ -3,7 +3,14 @@ import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../environments/environment";
 import {Users} from "./users";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
+export interface File2 {
+  id: string;
+  fileName: string;
+  fileType: string;
+  data: Uint8Array;
+}
 interface Users2{
   id: number;
   nom: string;
@@ -12,22 +19,15 @@ interface Users2{
   password: string;
   numtel: number;
   dateNaissance: Date;
-  dateRecrutement: Date;
-  situationFam: string;
-  nbEnfant:number;
-  adresse: string;
-  sexe:string;
-  manager:string;
-  position:string;
-  service: string;
-  cnss:number;
-  rib:string;
-  ncin:number;
-  npassport:string;
-  role : string ;
-  token:string ;
-  imageid:string;
-  filetype:string;
+  lienInsta?: string;
+  lienTikTok?: string;
+  categoriesContenu?: string;
+  nomEntreprise?: string;
+  siteWebEntreprise?: string;
+  secteurActivite?: string;
+  bio?: string;
+  role: string;
+  image?: File2;
 }
 interface LoginData {
   email: string;
@@ -64,24 +64,18 @@ interface updatedata{
   nom: string;
   prenom: string;
   email: string;
-  numtel:number ;
-  dateNaissance: Date ;
-  dateRecrutement:Date;
-  situationFam:string ;
-  nbEnfant:number;
-  adresse:string ;
-  service:string;
-  sexe:string;
-  cnss:number
-  rib:string;
-  manager:string;
-  ncin:number;
-  npassport:string;
-  Role : string ;
-  position:string;
-
-
-
+  password: string;
+  numtel: number;
+  dateNaissance: Date;
+  lienInsta?: string;
+  lienTikTok?: string;
+  categoriesContenu?: string;
+  nomEntreprise?: string;
+  siteWebEntreprise?: string;
+  secteurActivite?: string;
+  bio?: string;
+  role: string;
+  image?: File;
 }
 interface forgetpassData{
   newpassword : string;
@@ -96,7 +90,7 @@ export class UserService {
   PATH_OF_API = environment.apiBaseUrl
   requestHeader = new HttpHeaders({"No-Auth": "True"})
 
-  constructor(private httpclient: HttpClient ) {
+  constructor(private httpclient: HttpClient) {
   }
 
   public login(loginData: LoginData) {
@@ -120,6 +114,9 @@ export class UserService {
     formData.append('email', registerData.email);
     formData.append('password', registerData.password);
     formData.append('role', registerData.role);
+    formData.append('numtel', registerData.numtel.toString());
+    formData.append('dateNaissance', registerData.dateNaissance.toString());
+
     if (registerData.lienInsta) formData.append('lienInsta', registerData.lienInsta);
     if (registerData.lienTikTok) formData.append('lienTikTok', registerData.lienTikTok);
     if (registerData.categoriesContenu) formData.append('categoriesContenu', registerData.categoriesContenu);
@@ -171,13 +168,23 @@ export class UserService {
   public updateuserr(id: number, value: Users){
 console.log(value)
 const formData=new FormData();
-
    formData.append(   'nom', value.nom);
     formData.append(     'prenom', value.prenom);
       formData.append(     'email', value.email);
-
-
       formData.append(   ' role', value.role);
+    formData.append('role', value.role);
+    formData.append('numtel', value.numtel.toString());
+    formData.append('dateNaissance', value.dateNaissance.toString());
+
+    if (value.lienInsta) formData.append('lienInsta', value.lienInsta);
+    if (value.lienTikTok) formData.append('lienTikTok', value.lienTikTok);
+    if (value.categoriesContenu) formData.append('categoriesContenu', value.categoriesContenu.toString());
+    if (value.bio) formData.append('bio', value.bio);
+
+    if (value.nomEntreprise) formData.append('nomEntreprise', value.nomEntreprise);
+    if (value.siteWebEntreprise) formData.append('siteWebEntreprise', value.siteWebEntreprise);
+    if (value.secteurActivite) formData.append('secteurActivite', value.secteurActivite);
+    if (value.image2) formData.append('image', value.image2);
 
     console.log(formData)
 
@@ -192,10 +199,9 @@ const formData=new FormData();
     return this.httpclient.get<Users>(this.PATH_OF_API+'/api/v1/auth/findbymail/'+email);
 
 
-  }public getuserbymail2(email:string){
+  }
+  public getuserbymail2(email:string){
     return this.httpclient.get<Users2>(this.PATH_OF_API+'/api/v1/auth/findbymail2/'+email);
-
-
   }
   public getImage(fileId: string): Observable<any> {
     const url = `${this.PATH_OF_API}/image/attachments/${fileId}/image`;

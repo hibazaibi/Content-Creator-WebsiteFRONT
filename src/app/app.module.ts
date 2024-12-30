@@ -27,12 +27,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {OffreComponent} from "./Offre/offre.component";
 import { ChatComponent } from './chat/chat.component';
 import {OffrelistComponent} from "./Offre/offrelist/offrelist.component";
-import {ProfileComponent} from "./Profile/profile.component";
 import {ListusersComponent} from "./listusers/listusers.component";
 import { DisputeComponent } from './dispute/dispute.component';
 import { OffredetailsComponent } from './Offre/offredetails/offredetails/offredetails.component';
-
-
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {ClientdashboardComponent} from "./dashboard/clientdashboard/clientdashboard.component";
+import {CreatordashboardComponent} from "./dashboard/creatordashboard/creatordashboard.component";
+import {ProfilComponent} from "./AuthenticationCRUD/profil/profil.component";
 
 
 
@@ -54,10 +56,14 @@ import { OffredetailsComponent } from './Offre/offredetails/offredetails/offrede
     SidebarComponent,
     OffreComponent,
     ChatComponent,
-    ProfileComponent,
     OffrelistComponent,
     DisputeComponent,
-    OffredetailsComponent
+    OffredetailsComponent,
+    EvaluationComponent,
+    DashboardComponent,
+    ClientdashboardComponent,
+    CreatordashboardComponent,
+    ProfilComponent
 ],
   imports: [
     BrowserModule,
@@ -66,8 +72,7 @@ import { OffredetailsComponent } from './Offre/offredetails/offredetails/offrede
     HttpClientModule,
     RouterModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
   ],
   providers: [RestapiService],
   bootstrap: [AppComponent]

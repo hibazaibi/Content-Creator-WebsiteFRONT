@@ -4,6 +4,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {Users} from "../../users";
 import {OffreData, OffreService} from "../offre.service";
 import {UserService} from "../../user.service";
+import {UserAuthService} from "../../user-auth.service";
 
 
 
@@ -18,24 +19,33 @@ export class OffrelistComponent implements OnInit {
   public email!: string;
   public user!: Users;
   public useridoffre: number = 0;
+public iscreateur!: boolean ;
+  public isAdmin!: boolean ;
 
   constructor(
     private offreService: OffreService,
     private userService: UserService,
     private router: Router,
-
+private userauthserv: UserAuthService
 
   ) {}
 
   ngOnInit(): void {
-
+    this.isAdmin=this.userauthserv.isAdmin();
+this.iscreateur=this.userauthserv.isCreator();
     this.email = localStorage.getItem('email')!;
     if (this.email) {
       this.userService.getuserbymail(this.email).subscribe(
         (response: Users) => {
           this.user = response;
           this.useridoffre = this.user.id;
-          this.getOffresByCreatorId(localStorage.getItem('id')!);
+          if (response.role === "ADMIN") {
+            this.getAllOffers(); // Fetch all offers for admin
+          } else if (response.role === "CREATOR") {
+            this.getOffresByCreatorId(localStorage.getItem('id')!);}
+          else {
+            this.getOffresByUserId(localStorage.getItem('id')!);}
+
         },
         (error: HttpErrorResponse) => {
           console.error('Failed to fetch user details:', error);
@@ -48,10 +58,35 @@ export class OffrelistComponent implements OnInit {
     }
   }
 
-  public getOffresByCreatorId(useridoffre: string): void {
-    this.offreService.getOffreBycreatorid(useridoffre).subscribe(
+  public getAllOffers(): void {
+    this.offreService.getOffre().subscribe(
       (response: OffreData[]) => {
         this.offreData = response;
+        console.log('All offers:', this.offreData);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error fetching all offers:', error);
+        alert('Error fetching all offers. Please try again.');
+      }
+    );
+  }
+  public getOffresByUserId(userId: string): void {
+    this.offreService.getOffreByUserIdOffre(userId).subscribe(
+      (response: OffreData[]) => {
+        this.offreData = response;
+        console.log(this.offreData)
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error fetching offers:', error);
+        alert('Error fetching offers. Please try again.');
+      }
+    );
+  }
+  public getOffresByCreatorId(idcreateur: string): void {
+    this.offreService.getOffreBycreatorid(idcreateur).subscribe(
+      (response: OffreData[]) => {
+        this.offreData = response;
+        console.log(this.offreData)
       },
       (error: HttpErrorResponse) => {
         console.error('Error fetching offers:', error);
@@ -75,8 +110,13 @@ export class OffrelistComponent implements OnInit {
     }
   }
 
-  public detailsOffre(idoffre: number): void {
+  detailsOffre(idoffre: number) {
+    console.log(idoffre);
     this.router.navigate(['/offredetails', idoffre]);
+  }
+  EvOffre(idoffre: number) {
+    console.log(idoffre);
+    this.router.navigate(['/evaluation', idoffre]);
   }
 }
 

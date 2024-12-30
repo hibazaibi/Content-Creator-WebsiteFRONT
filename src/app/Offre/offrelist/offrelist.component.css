@@ -461,9 +461,9 @@ pre code {
 @media (min-width: 992px) {
   .container {
     max-width: 960px; } }
-@media (min-width: 1200px) {
+@media (min-width: 1500px) {
   .container {
-    max-width: 1140px; } }
+    max-width: 1370px; } }
 
 .container-fluid {
   width: 100%;
@@ -927,7 +927,7 @@ pre code {
     -webkit-box-flex: 0;
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
-    max-width: 100%; }
+    max-width: 2300px; }
   .order-md-first {
     -webkit-box-ordinal-group: 0;
     -ms-flex-order: -1;

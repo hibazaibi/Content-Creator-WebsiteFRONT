@@ -6,28 +6,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Profile Cards | CodingLab</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <a class="navbar-brand logo-text" href="#">Creator<span class="hub">Hub</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto align-items-center">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-primary ml-3 px-4" href="/register">Sign Up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 <div class="main-container">
-  <app-sidebar></app-sidebar>
-
   <div class="container">
     <div class="box" *ngFor="let creator of creators">
       <div class="image">
-        <img [src]="creator.image ? creator.image : 'assets/default-profile.jpg'" alt="Creator Image">
+        <img [src]="getImageUrl(creator)" *ngIf="creator.image" alt="Post Image" alt="Creator Image">
       </div>
       <div class="name_job">
         {{ creator.nom }} {{ creator.prenom }}
       </div>
       <div class="rating">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="far fa-star"></i>
-        <i class="far fa-star"></i>
-        <i class="far fa-star"></i>
+        <!-- Loop for the number of stars based on avgrattings -->
+        <i class="fas fa-star" *ngFor="let star of [].constructor(creator.avgrattings)"></i>
       </div>
+
       <p>{{ creator.bio || 'No bio available' }}</p>
       <div class="btns">
         <button (click)="makeOffer(creator.id)">Make an Offer</button>
@@ -35,6 +54,8 @@
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

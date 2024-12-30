@@ -15,10 +15,10 @@
 
   <!-- Main Content -->
   <section class="ftco-section flex-grow-1">
-    <div class="container" style="margin-left:330px;margin-top:-50px;">
+    <div class="container" style="margin-left:115px;margin-top:-80px;">
       <div class="row justify-content-center">
         <div class="col-md-6 text-center mb-5">
-          <h2 class="heading-section">Vos Offres</h2>
+          <h2 class="heading-section" style=" font-size: 30px;color: #034D89;"><b>Your Offers</b></h2>
         </div>
       </div>
       <div class="row">
@@ -48,12 +48,14 @@
                   <span class="{{ offre.status === 'Active' ? 'active' : 'waiting' }}">{{ offre.status }}</span>
                 </td>
                 <td>{{ offre.nameclient }}</td>
-                <td>{{ offre.Deadline | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ offre.deadline | date: 'dd/MM/yyyy' }}</td>
                 <td>{{ offre.collaborationDetails }}</td>
                 <td>{{ offre.specialRequests }}</td>
                 <td>
-                  <button class="btn btn-primary btn-sm" (click)="detailsOffre(offre.idcreateur)">Voir details</button>
-                  <button class="btn btn-danger btn-sm" (click)="deleteOffre(offre.idcreateur)">Supprimer</button>
+                  <button class="btn btn-primary btn-sm" (click)="detailsOffre(offre.idOffre)">Voir details</button>
+                  <button  *ngIf="offre.status=='EN_ATTENTE'" class="btn btn-danger btn-sm" (click)="deleteOffre(offre.idOffre)">Supprimer</button>
+                  <button *ngIf="offre.status=='TERMINEE'&&!iscreateur&&!offre.isev&&!isAdmin" class="btn btn-success btn-sm" (click)="EvOffre(offre.idOffre)">Evaluate</button>
+
                 </td>
               </tr>
               </tbody>

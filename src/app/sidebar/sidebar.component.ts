@@ -11,13 +11,11 @@ import {UserService} from "../user.service";
 })
 export class SidebarComponent implements OnInit {
   isadmin:boolean=false;
+  isclient:boolean=false;
+  iscreator:boolean=false;
   email!: string;
-  notifconge!:number;
-  notifauto!:number;
-  notif:number=0;
   user!:Users;
   mail!:string;
-  pos!:string;
   constructor(private userauthservice: UserAuthService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
@@ -36,6 +34,8 @@ export class SidebarComponent implements OnInit {
     this.email = localStorage.getItem('roles')!;
     console.log(this.email);
     this.verifadmin();
+    this.verifcreator();
+    this.verifclient();
   }
 
 
@@ -44,66 +44,27 @@ export class SidebarComponent implements OnInit {
       this.isadmin=true;
     }
   }
-  showDemandeSubMenuFlag: boolean = false;
-
-  showDemandeSubMenu() {
-    this.showDemandeSubMenuFlag = !this.showDemandeSubMenuFlag;
-  }
-  showAutoSubMenuFlag: boolean = false;
-
-  showAutoSubMenu() {
-    this.showAutoSubMenuFlag = !this.showAutoSubMenuFlag;
-  }
-  showAutreSubMenuFlag: boolean = false;
-
-  showAutreSubMenu() {
-    this.showAutreSubMenuFlag = !this.showAutreSubMenuFlag;
-  }
-  showDemande5SubMenuFlag: boolean = false;
-
-  showDemande5SubMenu() {
-    this.showDemande5SubMenuFlag = !this.showDemande5SubMenuFlag;
-  }
-  showDemande4SubMenuFlag: boolean = false;
-
-  showDemande4SubMenu() {
-    this.showDemande4SubMenuFlag = !this.showDemande4SubMenuFlag;
-  }
-  public onlogout() {
-
-
-
-    const token = localStorage.getItem('jwtToken');
-    this.userauthservice.clear();
-    if (token) {
-      this.userService.logout(token).subscribe(
-        () => {
-          localStorage.removeItem('jwtToken');
-
-
-        },
-        error => console.error(error)
-      );
+  verifclient(){
+    if (this.email===`"CLIENT"`){
+      this.isclient=true;
     }
+  }
+  verifcreator(){
+    if (this.email===`"CREATOR"`){
+      this.iscreator=true;
+    }
+  }
+
+
+
+  public onlogout() {
+    this.userauthservice.clear();
 
   }public isLoggedIn() {
     return this.userauthservice.isLoggedIn();
 
   }
-  showAdminSubMenuFlag: boolean = false;
 
-  showAdminSubMenu() {
-    this.showAdminSubMenuFlag= !this.showAdminSubMenuFlag;
-  }
-  showDemande2SubMenuFlag: boolean = false;
 
-  showDemande2SubMenu() {
-    this.showDemande2SubMenuFlag = !this.showDemande2SubMenuFlag;
-  }
-  showDemande3SubMenuFlag: boolean = false;
-
-  showDemande3SubMenu() {
-    this.showDemande3SubMenuFlag = !this.showDemande3SubMenuFlag;
-  }
 }
 

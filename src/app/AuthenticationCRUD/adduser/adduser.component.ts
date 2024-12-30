@@ -52,7 +52,9 @@ console.log(registerForm.value)
       email: registerForm.value.email,
       password: registerForm.value.password,
       role: registerForm.value.role,
-      image: this.userFile
+      image: this.userFile,
+      numtel:registerForm.value.numtel.toString(),
+      dateNaissance: registerForm.value.dateNaissance.toString()
     };
 
     const clientData = {

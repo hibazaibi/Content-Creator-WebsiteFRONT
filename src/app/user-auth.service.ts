@@ -66,6 +66,22 @@ public isLoggedIn2(){
       return false;
     }
   }
+  public isCreator(){
+    const role = localStorage.getItem("roles");
+    if(role === `"CREATOR"`) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  public isClient(){
+    const role = localStorage.getItem("roles");
+    if(role === `"CLIENT"`) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   public onlogout() {
 
 

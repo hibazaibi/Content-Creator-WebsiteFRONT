@@ -1,0 +1,64 @@
+<div class="creator-dashboard">
+  <app-sidebar></app-sidebar>
+
+  <h1>Creator Dashboard</h1>
+
+  <!-- User Greeting -->
+  <div class="welcome-section">
+    <h2>Welcome, {{ user?.nom }} {{ user?.prenom }}</h2>
+  </div>
+
+  <!-- Dashboard Summary Section -->
+  <div class="dashboard-summary">
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <h3>Total Offers</h3>
+      <p>{{ totalOffers }}</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-dollar-sign"></i>
+      </div>
+      <h3>Total Earnings</h3>
+      <p>{{ totalEarnings | currency: 'DT' }}</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-hand-holding-usd"></i>
+      </div>
+      <h3>Average Budget</h3>
+      <p>{{ averageBudget | currency: 'DT' }}</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">
+        <i class="fas fa-star"></i>
+      </div>
+      <h3>Average Rating</h3>
+      <p>{{ averageRating }}</p>
+    </div>
+  </div>
+
+  <!-- Chart Section -->
+  <div class="chart-section">
+    <h4>Offers by Status</h4>
+    <canvas id="OffersByStatusChart"></canvas>
+  </div>
+
+  <!-- Recent Feedback Section -->
+  <div class="feedback-container">
+    <h3>Recent Feedback</h3>
+    <ul>
+      <li *ngFor="let feedback of feedbacks">
+        <p>{{ feedback }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Improvement Suggestions Section -->
+  <div class="improvement-suggestions">
+    <h4>Improvement Suggestions</h4>
+    <p>{{ improvementSuggestions }}</p>
+  </div>
+</div>

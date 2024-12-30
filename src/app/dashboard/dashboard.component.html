@@ -1,0 +1,71 @@
+<div id="root">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Include Sidebar -->
+      <app-sidebar class="col-lg-2 col-md-3"></app-sidebar>
+
+      <!-- Main Content -->
+      <main class="col-lg-10 col-md-9 ms-sm-auto px-md-4">
+        <div class="row align-items-stretch flex-wrap">
+          <!-- Total Users -->
+          <div class="c-dashboardInfo col-lg-3 col-md-6 d-flex">
+            <div class="wrap">
+              <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total Users</h4>
+              <span class="hind-font caption-12 c-dashboardInfo__count">{{ totalUsers }}</span>
+            </div>
+          </div>
+          <!-- Total Clients -->
+          <div class="c-dashboardInfo col-lg-3 col-md-6 d-flex">
+            <div class="wrap">
+              <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total Clients</h4>
+              <span class="hind-font caption-12 c-dashboardInfo__count">{{ totalClients }}</span>
+            </div>
+          </div>
+          <!-- Total Creators -->
+          <div class="c-dashboardInfo col-lg-3 col-md-6 d-flex">
+            <div class="wrap">
+              <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total Creators</h4>
+              <span class="hind-font caption-12 c-dashboardInfo__count">{{ totalCreators }}</span>
+            </div>
+          </div>
+          <!-- Total Offers -->
+          <div class="c-dashboardInfo col-lg-3 col-md-6 d-flex">
+            <div class="wrap">
+              <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Total Offers</h4>
+              <span class="hind-font caption-12 c-dashboardInfo__count">{{ totalOffres }}</span>
+            </div>
+          </div>
+          <!-- Average Budget -->
+          <div class="c-dashboardInfo col-lg-3 col-md-6 d-flex">
+            <div class="wrap">
+              <h4 class="heading heading5 hind-font medium-font-weight c-dashboardInfo__title">Average Budget</h4>
+              <span class="hind-font caption-12 c-dashboardInfo__count">{{ averageBudget | currency:"DT" }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart Sections -->
+        <div class="row mt-5">
+          <div class="col-lg-6">
+            <div class="chart-section">
+              <h4>User Activity</h4>
+              <canvas id="UserActivityChart"></canvas>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="chart-section">
+              <h4>Offers by Status</h4>
+              <canvas id="OffersByStatusChart"></canvas>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12" >
+            <div class="chart-section">
+              <h4>Offers Grouped by Month</h4>
+              <canvas id="OffersGroupedByMonthChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

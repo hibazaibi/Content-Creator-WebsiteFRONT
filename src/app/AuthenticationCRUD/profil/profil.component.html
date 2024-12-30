@@ -1,0 +1,55 @@
+<div class="profile-container">
+  <app-sidebar></app-sidebar>
+
+  <div class="profile-header">
+    <div class="profile-picture">
+      <img *ngIf="user3?.image" [src]="getImageUrl(user3)" alt="User Image" />
+    </div>
+    <h1>{{ user3?.prenom }} {{ user3?.nom }}</h1>
+    <p class="role">{{ user3?.role | titlecase }}</p>
+    <label for="image2" class="upload-btn">Change Profile Picture</label>
+    <input
+      type="file"
+      id="image2"
+      (change)="onSelectFile($event)"
+      class="hidden-input"
+      accept="image/*"
+    />
+  </div>
+
+  <div class="profile-content">
+    <div class="profile-details">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Email:</strong> <input [(ngModel)]="user3.email" type="email" disabled /></li>
+        <li><strong>Phone:</strong> <input [(ngModel)]="user3.numtel" type="text" /></li>
+        <li><strong>Date of Birth:</strong> <input [(ngModel)]="user3.dateNaissance" type="date" /></li>
+      </ul>
+    </div>
+
+    <div class="profile-details">
+      <div *ngIf="user3?.role === 'CREATOR'">
+        <h2>Creator Details</h2>
+        <ul>
+          <li><strong>Instagram:</strong> <input [(ngModel)]="user3.lienInsta" type="url" /></li>
+          <li><strong>TikTok:</strong> <input [(ngModel)]="user3.lienTikTok" type="url" /></li>
+          <li><strong>Categories:</strong> <input [(ngModel)]="user3.categoriesContenu" type="text" /></li>
+          <li><strong>Bio:</strong> <textarea [(ngModel)]="user3.bio"></textarea></li>
+        </ul>
+      </div>
+
+      <div *ngIf="user3?.role === 'CLIENT'">
+        <h2>Client Details</h2>
+        <ul>
+          <li><strong>Company Name:</strong> <input [(ngModel)]="user3.nomEntreprise" type="text" /></li>
+          <li><strong>Website:</strong> <input [(ngModel)]="user3.siteWebEntreprise" type="url" /></li>
+          <li><strong>Industry:</strong> <input [(ngModel)]="user3.secteurActivite" type="text" /></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-actions">
+    <button (click)="updateUser()">Save Changes</button>
+  </div>
+</div>

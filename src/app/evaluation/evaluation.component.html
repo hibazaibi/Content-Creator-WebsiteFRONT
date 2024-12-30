@@ -1,0 +1,37 @@
+<div class="layout-container">
+  <app-sidebar></app-sidebar>
+  <div id="evaluation-form-container">
+    <form id="evaluation-form" #evaluationForm="ngForm" (ngSubmit)="submitEvaluation(evaluationForm)">
+      <h1 id="form-title">Leave an Evaluation</h1>
+      <p id="form-description">Please provide your rating and feedback for the service.</p>
+      <fieldset>
+        <legend>Evaluation Details</legend>
+        <div>
+          <label for="star-rating">Rating:</label>
+          <div id="star-rating">
+            <span
+              *ngFor="let star of stars; let i = index"
+              (click)="setRating(star)"
+              [class.filled]="currentRating >= star">
+              ★
+            </span>
+          </div>
+        </div>
+        <div>
+          <label for="feedback">Feedback:</label>
+          <textarea
+            id="feedback"
+            name="feedback"
+            ngModel
+            placeholder="Provide your feedback..."
+            rows="4"
+            required>
+          </textarea>
+        </div>
+      </fieldset>
+      <div id="form-actions">
+        <button type="submit" id="submit-button">Submit Evaluation</button>
+      </div>
+    </form>
+  </div>
+</div>

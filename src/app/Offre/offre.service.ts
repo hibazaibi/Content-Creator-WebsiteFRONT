@@ -7,7 +7,7 @@ export interface OffreData{
   idOffre: number;
   description:String;
   budget: number;
-  status : String;
+  status : string;
   useridoffre: String;
   idcreateur:number ;
   nameclient : string;

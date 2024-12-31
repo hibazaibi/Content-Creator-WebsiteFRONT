@@ -22,6 +22,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ClientdashboardComponent} from "./dashboard/clientdashboard/clientdashboard.component";
 import {CreatordashboardComponent} from "./dashboard/creatordashboard/creatordashboard.component";
 import {ProfilComponent} from "./AuthenticationCRUD/profil/profil.component";
+import {DisputelistComponent} from "./dispute/disputelist/disputelist.component";
 
 const routes: Routes = [
   {path:'' ,redirectTo:'home',pathMatch:'full'},
@@ -40,12 +41,14 @@ const routes: Routes = [
   {path:"offrelist",component:OffrelistComponent},
   {path:"offredetails/:id",component:OffredetailsComponent},
   {path:"chat/:id",component:ChatComponent},
-  {path:'dispute',component:DisputeComponent},
+  {path:'dispute/:id',component:DisputeComponent},
   { path: "evaluation/:id", component: EvaluationComponent },
   {path:"dashboard",component:DashboardComponent},
   {path:"mydashboard",component:ClientdashboardComponent},
   {path:"mydashboard1",component:CreatordashboardComponent},
-  {path:"profil",component:ProfilComponent}
+  {path:"profil",component:ProfilComponent},
+  {path:'disputelist',component:DisputelistComponent},
+
 ];
 
 @NgModule({

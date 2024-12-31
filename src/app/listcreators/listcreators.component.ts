@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../user.service";
-
+import { Location } from '@angular/common';
 import {Users} from "../users";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
@@ -13,7 +13,7 @@ import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 export class ListcreatorsComponent implements OnInit {
   public creators: Users[] = [];
 
-  constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizer ) {}
+  constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizer,private location: Location ) {}
 
   ngOnInit(): void {
     this.getCreators();
@@ -40,7 +40,9 @@ export class ListcreatorsComponent implements OnInit {
     }
     return null;
   }
-
+  goBack(): void {
+    this.location.back();
+  }
   protected readonly Math = Math;
 }
 

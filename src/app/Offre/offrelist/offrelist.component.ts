@@ -118,5 +118,27 @@ this.iscreateur=this.userauthserv.isCreator();
     console.log(idoffre);
     this.router.navigate(['/evaluation', idoffre]);
   }
+  CreateDispute(idoffre: number) {
+    console.log(idoffre);
+    this.router.navigate(['/dispute', idoffre]);
+  }
+  getStatusText(status: string): string {
+    switch (status) {
+      case 'EN_ATTENTE':
+        return 'Pending';
+      case 'TERMINEE':
+        return 'Completed';
+      case 'ACCEPTEE':
+        return 'Accepted';
+      case 'REFUSE':
+        return 'Refused';
+      case 'EXPIRE':
+        return 'Expired';
+      default:
+        return status;
+    }
+  }
+
+
 }
 

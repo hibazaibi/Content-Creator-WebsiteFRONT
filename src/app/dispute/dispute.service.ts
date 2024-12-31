@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {environment} from "../../environments/environment";
-
+export interface DisputeRequest {
+  offerId: number;
+  userId: number;
+  raison: string;
+  detailsresolution: string;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +16,7 @@ export class DisputeService {
 
   constructor(private http: HttpClient) {}
 
-  createDispute(disputeRequest: any): Observable<any> {
+  createDispute(disputeRequest: DisputeRequest): Observable<any> {
     return this.http.post<any>(this.PATH_OF_API + "/api/disputes/create", disputeRequest);
   }
 

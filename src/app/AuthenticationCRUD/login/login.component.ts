@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {error} from "@angular/compiler-cli/src/transformers/util";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserAuthService} from "../../user-auth.service";
 import {UserService} from "../../user.service";
 
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   existinguser:boolean=true;
   constructor(private userService: UserService,
               private userAuthService:UserAuthService,
-              private  router : Router) {
+              private  router : Router,
+              private route: ActivatedRoute,) {
   }
 
   ngOnInit(): void {
@@ -37,26 +38,25 @@ export class LoginComponent implements OnInit {
           if(email==="" || pass===""){
             return alert("les champs sont obligatoires ");}
 
-            const role1 = response.role;
-            if (role1 === 'ADMIN') {
-              this.router.navigate(['/dashboard']);
+          let redirectUrl: string = this.route.snapshot.queryParams['returnUrl'] ; // Default to dashboard
+          const role1 = response.role;
 
-            } else {
-              if (role1==='CLIENT'){
-                this.router.navigate(['/mydashboard']);
-            } else{
-              this.router.navigate(['/mydashboard1']);
-          }
-
-
+          if (role1 === 'ADMIN') {
+            this.router.navigate([redirectUrl || '/dashboard']);
+          } else if (role1 === 'CLIENT') {
+            this.router.navigate([redirectUrl || '/mydashboard']);
+          } else if (role1 === 'CREATOR') {
+            this.router.navigate([redirectUrl || '/mydashboard1']);
+          } else {
+            this.router.navigate([redirectUrl || '/dashboard']);
           }
         },
         (error) => {
-          this.existinguser=false;
-
+          this.existinguser = false;
         }
       );
-    }
+  }
+
     existuser(loginform: NgForm) {
       this.userService.getuserbymail(loginform.value['email'])
         .subscribe(

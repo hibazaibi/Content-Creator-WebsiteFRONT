@@ -1,39 +1,28 @@
-<div class="dispute-container">
-  <!-- Create Dispute -->
-  <h2>Create Dispute</h2>
-  <form (submit)="createDispute(); $event.preventDefault();">
-    <label for="offerId">Offer ID:</label>
-    <input
-      type="number"
-      id="offerId"
-      [(ngModel)]="newDispute.offerId"
-      name="offerId"
-      required
-    />
-    <label for="userId">User ID:</label>
-    <input
-      type="number"
-      id="userId"
-      [(ngModel)]="newDispute.userId"
-      name="userId"
-      required
-    />
-    <label for="reason">Reason:</label>
-    <input
-      type="text"
-      id="reason"
-      [(ngModel)]="newDispute.reason"
-      name="reason"
-      required
-    />
-    <label for="details">Details:</label>
-    <textarea
-      id="details"
-      [(ngModel)]="newDispute.details"
-      name="details"
-    ></textarea>
-    <button type="submit">Create Dispute</button>
-  </form>
+<!-- create-dispute.component.html -->
 
-  <hr />
+<div class="dispute-form">
+  <div class="container mt-4" >
+    <a href="javascript:history.back()" class="text-muted" style="margin-top:-10px;"><i class="fas fa-arrow-left"></i> Return</a>
+  </div>
+  <app-sidebar></app-sidebar>
+  <h3>Create a Dispute</h3>
+
+  <!-- Reason for the dispute -->
+  <label for="raison">Reason for Dispute</label>
+  <textarea id="raison" [(ngModel)]="reason" name="raison" required placeholder="Enter the reason for the dispute"></textarea>
+
+  <!-- Details of the dispute -->
+  <label for="detailsresolution">Details</label>
+  <textarea id="detailsresolution" [(ngModel)]="detailsResolution" name="detailsresolution" required placeholder="Enter the details of the dispute"></textarea>
+
+  <!-- Loading spinner -->
+  <div *ngIf="isLoading" class="spinner">
+    <i class="fa fa-spinner fa-spin"></i> Creating dispute...
+  </div>
+
+  <!-- Submit button -->
+  <button (click)="createDispute()" [disabled]="isLoading">Create Dispute</button>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 </div>

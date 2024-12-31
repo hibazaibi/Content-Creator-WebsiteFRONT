@@ -35,6 +35,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ClientdashboardComponent} from "./dashboard/clientdashboard/clientdashboard.component";
 import {CreatordashboardComponent} from "./dashboard/creatordashboard/creatordashboard.component";
 import {ProfilComponent} from "./AuthenticationCRUD/profil/profil.component";
+import {DisputelistComponent} from "./dispute/disputelist/disputelist.component";
 
 
 
@@ -63,7 +64,8 @@ import {ProfilComponent} from "./AuthenticationCRUD/profil/profil.component";
     DashboardComponent,
     ClientdashboardComponent,
     CreatordashboardComponent,
-    ProfilComponent
+    ProfilComponent,
+    DisputelistComponent
 ],
   imports: [
     BrowserModule,

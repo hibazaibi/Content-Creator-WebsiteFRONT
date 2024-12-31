@@ -34,7 +34,7 @@
                 <th>Deadline</th>
                 <th>Collaboration Details</th>
                 <th>Special Requests</th>
-                <th>Actions</th>
+                <th style="width:200px;">Actions</th>
               </tr>
               </thead>
               <tbody>
@@ -45,16 +45,17 @@
                 <td>{{ offre.description }}</td>
                 <td>{{ offre.budget }} TND</td>
                 <td class="status">
-                  <span class="{{ offre.status === 'Active' ? 'active' : 'waiting' }}">{{ offre.status }}</span>
+                  <span class="{{ offre.status === 'Active' ? 'active' : 'waiting' }}">{{ getStatusText(offre.status) }}</span>
                 </td>
                 <td>{{ offre.nameclient }}</td>
                 <td>{{ offre.deadline | date: 'dd/MM/yyyy' }}</td>
                 <td>{{ offre.collaborationDetails }}</td>
                 <td>{{ offre.specialRequests }}</td>
                 <td>
-                  <button class="btn btn-primary btn-sm" (click)="detailsOffre(offre.idOffre)">Voir details</button>
-                  <button  *ngIf="offre.status=='EN_ATTENTE'" class="btn btn-danger btn-sm" (click)="deleteOffre(offre.idOffre)">Supprimer</button>
-                  <button *ngIf="offre.status=='TERMINEE'&&!iscreateur&&!offre.isev&&!isAdmin" class="btn btn-success btn-sm" (click)="EvOffre(offre.idOffre)">Evaluate</button>
+                  <button class="btn btn-primary btn-sm" (click)="detailsOffre(offre.idOffre)" style="margin-right: 5px;">    <i class="fa fa-info-circle"></i></button>
+                  <button  *ngIf="offre.status=='EN_ATTENTE'" class="btn btn-danger btn-sm" (click)="deleteOffre(offre.idOffre)" style="margin-right: 5px;">  <i class="fa fa-trash"></i></button>
+                  <button *ngIf="offre.status=='TERMINEE'&&!iscreateur&&!offre.isev&&!isAdmin" class="btn btn-success btn-sm" (click)="EvOffre(offre.idOffre)" style="margin-right: 5px;"> <i class="fa fa-check-circle"></i></button>
+                  <button class="btn btn-warning btn-sm" (click)="CreateDispute(offre.idOffre)" style="margin-right: 5px;">  <i class="fa fa-exclamation-circle"></i></button>
 
                 </td>
               </tr>

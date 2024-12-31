@@ -35,8 +35,9 @@ export class UserAuthService {
     localStorage.setItem("id" , id.toString());
 
   }
-  public getid() :string | null{
-    return  localStorage.getItem("id");
+  public getid(): number | null {
+    const id = localStorage.getItem("id");
+    return id ? Number(id) : null; // Convert string to number if it's not null
   }
 public clear(){
     localStorage.clear();
